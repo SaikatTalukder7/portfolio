@@ -1,0 +1,83 @@
+/* Education section er degree card and coursework tags */
+
+.education-entry {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 48px;
+  padding: 28px;
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.education-main h3 {
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+
+.education-university {
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.education-status {
+  font-family: var(--font-display);
+  color: var(--accent);
+  font-size: 0.85rem;
+}
+
+.education-details {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.education-details h4 {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+/* Amar coursework gula tag akare show kore */
+.education-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.education-tags li {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  padding: 5px 10px;
+  border-radius: 6px;
+}
+
+/* Amar academic and project activity */
+.education-activity li {
+  position: relative;
+  padding-left: 16px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 6px;
+}
+
+.education-activity li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+@media (max-width: 780px) {
+  .education-entry {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+}

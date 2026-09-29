@@ -1,0 +1,127 @@
+/* ===============================================
+   GLOBAL STYLES & DESIGN TOKENS
+   All colors, fonts, and shared layout rules live here.
+   Change a variable below and it updates everywhere it's used.
+   =============================================== */
+
+:root {
+  /* Color tokens — the whole site's palette is controlled from here */
+  --bg: #10141c;
+  --bg-raised: #171d28;
+  --surface: #1b2230;
+  --border: #262e3d;
+  --text: #e7ecf3;
+  --text-muted: #8d97a8;
+  --accent: #4fa3f7;
+  --accent-soft: rgba(79, 163, 247, 0.12);
+  --accent-strong: #7cbcf9;
+
+  /* Font families used across the site */
+  --font-display: 'Space Mono', 'Courier New', monospace;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Shared layout values */
+  --content-width: 1080px;
+  --radius: 10px;
+}
+
+/* Basic reset so padding/border don't add to element width */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth; /* smooth scroll when clicking nav links */
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Headings use the monospace "display" font for a coding/terminal feel */
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+p {
+  margin: 0;
+  color: var(--text-muted);
+  max-width: 65ch;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+button {
+  font-family: inherit;
+}
+
+/* .container centers content and caps its width on large screens */
+.container {
+  width: 100%;
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* .section is the shared wrapper every page section (About, Skills, etc.) uses */
+.section {
+  padding: 88px 0;
+  border-top: 1px solid var(--border);
+}
+
+.section-head {
+  margin-bottom: 40px;
+}
+
+.section-head h2 {
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  color: var(--text);
+}
+
+/* Visible focus outline for keyboard navigation (accessibility) */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Respect the user's OS setting to reduce motion/animations */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Smaller section padding on mobile screens */
+@media (max-width: 640px) {
+  .section {
+    padding: 64px 0;
+  }
+}
