@@ -1,57 +1,425 @@
-# Saikat Talukder — Portfolio
+# Saikat Talukder | Personal Portfolio
 
-A personal portfolio site built with React + Vite. No backend — everything is a static frontend.
+<p align="center">
+  <img src="https://img.shields.io/badge/React-Vite-61DAFB?style=for-the-badge&logo=react&logoColor=white" alt="React + Vite">
+  <img src="https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript">
+  <img src="https://img.shields.io/badge/Vercel-Deployed-000000?style=for-the-badge&logo=vercel" alt="Vercel">
+  <img src="https://img.shields.io/badge/Status-Live-brightgreen?style=for-the-badge" alt="Status">
+  <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License">
+</p>
 
-## Running it locally
+<p align="center">
+  <strong>CSE Student · Cloud & DevOps Enthusiast · Software Developer</strong>
+</p>
 
-You need [Node.js](https://nodejs.org/) (18+) installed.
+<p align="center">
+  <a href="https://portfolio-one-lac-zvkd2yllja.vercel.app/">🌐 Live Portfolio</a> ·
+  <a href="https://github.com/SaikatTalukder7">GitHub</a> ·
+  <a href="https://linkedin.com/in/saikattalukder7">LinkedIn</a>
+</p>
+
+---
+
+## 👋 About
+
+This repository contains my personal portfolio website, developed to showcase my **academic journey, technical skills, projects, programming profiles, and career interests**.
+
+The website is built with **React and Vite** with a responsive interface designed for desktop, tablet, and mobile devices.
+
+My current career direction focuses on **Python-based Cloud & DevOps**, backend development, software engineering, and research-oriented opportunities.
+
+---
+
+## 🌐 Live Website
+
+Visit the portfolio:
+
+### [🚀 portfolio-one-lac-zvkd2yllja.vercel.app](https://portfolio-one-lac-zvkd2yllja.vercel.app/)
+
+---
+
+## 📌 Portfolio Highlights
+
+The website currently includes:
+
+* 🏠 Personal introduction and hero section
+* 👨‍💻 About section
+* 🛠️ Technical skills
+* 🚀 Featured projects
+* 🎓 Academic background
+* 🏆 Competitive programming profiles
+* 📜 Certifications and learning
+* 📄 Online resume
+* 📬 Contact information
+* ☁️ Cloud & DevOps career interests
+
+---
+
+## ✨ Key Features
+
+* **Responsive Layout**
+  Designed to work smoothly across different screen sizes.
+
+* **React Component Architecture**
+  Portfolio sections are organized into reusable React components.
+
+* **Modern UI**
+  Clean and colorful interface with a focus on readability and usability.
+
+* **Project Showcase**
+  Displays selected academic and personal projects with their technologies and repository links.
+
+* **Resume Access**
+  Includes direct access to my current resume.
+
+* **Programming Profiles**
+  Links to my competitive programming and developer profiles.
+
+* **Smooth User Experience**
+  Navigation and page sections are designed for a simple browsing experience.
+
+* **Vercel Deployment**
+  The portfolio is deployed through Vercel and connected with GitHub.
+
+---
+
+## 🛠️ Technology Stack
+
+### Frontend
+
+| Technology     | Usage                                   |
+| -------------- | --------------------------------------- |
+| **React**      | Building the user interface             |
+| **Vite**       | Development server and production build |
+| **JavaScript** | Application logic                       |
+| **HTML5**      | Page structure                          |
+| **CSS3**       | Styling and responsive design           |
+
+### Development Tools
+
+| Tool        | Usage                  |
+| ----------- | ---------------------- |
+| **Git**     | Version control        |
+| **GitHub**  | Source code management |
+| **VS Code** | Development            |
+| **Vercel**  | Deployment and hosting |
+
+---
+
+## 📂 Project Structure
+
+```text
+portfolio/
+│
+├── public/
+│   ├── images/
+│   │   ├── saikat.png
+│   │   ├── UniversityManagementSystem.png
+│   │   ├── AutonomousNavigationCar.jpeg
+│   │   └── EdTech.png
+│   │
+│   └── resume.pdf
+│
+├── src/
+│   ├── components/
+│   │   ├── Navbar.jsx
+│   │   ├── Hero.jsx
+│   │   ├── About.jsx
+│   │   ├── Skills.jsx
+│   │   ├── Projects.jsx
+│   │   ├── Education.jsx
+│   │   ├── Contact.jsx
+│   │   └── Footer.jsx
+│   │
+│   ├── data/
+│   │   └── portfolioData.js
+│   │
+│   ├── App.jsx
+│   ├── App.css
+│   ├── index.css
+│   └── main.jsx
+│
+├── index.html
+├── package.json
+├── vite.config.js
+└── .gitignore
+```
+
+---
+
+## ▶️ Running the Project
+
+### Requirements
+
+Before running the project, make sure you have:
+
+* **Node.js 18+**
+* **npm**
+
+### Clone the Repository
+
+```bash
+git clone https://github.com/SaikatTalukder7/portfolio.git
+cd portfolio
+```
+
+### Install Dependencies
 
 ```bash
 npm install
+```
+
+### Start Development Server
+
+```bash
 npm run dev
 ```
 
-Then open the local URL it prints (usually http://localhost:5173).
+The terminal will provide the local development URL.
 
-To build a production version:
+---
+
+## 📦 Production Build
+
+Create the production build using:
 
 ```bash
 npm run build
-npm run preview   # preview the built version locally
 ```
 
-## Project structure
+Vite will generate the optimized files inside:
 
-```
-src/
-  main.jsx              entry point, mounts <App />
-  index.css              global design tokens (colors, fonts, spacing) + base styles
-  App.jsx                 assembles the page from section components
-  data/
-    portfolioData.js      all the content: bio, skills, projects, education, contact links
-  components/
-    Navbar.jsx / .css      sticky nav bar with mobile hamburger menu
-    Hero.jsx / .css        terminal-style intro animation
-    About.jsx / .css       bio + quick facts
-    Skills.jsx / .css      skills grouped by category
-    Projects.jsx / .css    project list
-    Education.jsx / .css   degree, coursework, activity
-    Contact.jsx / .css     contact links
-    Footer.jsx / .css      footer
-public/
-  images/                 put saikat.png and diagram.jpg here
-  resume.pdf              your resume — the Hero "Download resume" button links here
+```text
+dist/
 ```
 
-## Editing content
+To preview the production build locally:
 
-Almost everything text-based lives in `src/data/portfolioData.js` — update your bio, skills,
-project descriptions, GitHub links, etc. there without touching any component code.
+```bash
+npm run preview
+```
 
-To add a real project link, set the `link` field on a project in that file to the repo URL,
-and the "View repository" link will appear automatically.
+---
 
-## Customizing the look
+## 🚀 Deployment
 
-Colors, fonts, and spacing are defined as CSS variables at the top of `src/index.css`
-(the `:root` block) — change a value there and it updates everywhere the token is used.
+The website is deployed using **Vercel**.
+
+### Deployment Flow
+
+```text
+Local Development
+       ↓
+      Git
+       ↓
+    GitHub
+       ↓
+    Vercel
+       ↓
+ Live Portfolio
+```
+
+**Live URL:**
+https://portfolio-one-lac-zvkd2yllja.vercel.app/
+
+The GitHub repository is connected to Vercel, allowing future updates to be deployed after pushing changes to the repository.
+
+---
+
+## 💻 Featured Projects
+
+### 🎓 University Management System
+
+**Technologies:** Java · Java Swing · Java AWT
+
+A desktop-based university management application developed as an academic project.
+
+Main functionality includes:
+
+* Student registration
+* Student information management
+* Student updating and deletion
+* Department information
+* Admission-related functionality
+* Login system
+
+**Repository:**
+https://github.com/SaikatTalukder7/University_Management_System
+
+---
+
+### 🚗 Autonomous Navigation Car
+
+**Technologies:** C/C++ · Arduino · Sensors · Microcontroller
+
+An autonomous car project designed to detect obstacles and navigate its environment using sensors and microcontroller-based control.
+
+**Repository:**
+https://github.com/SaikatTalukder7/Autonomous-Navigation-Car
+
+---
+
+### 📚 Ed-Tech Platform
+
+**Technologies:** React · JavaScript · Node.js · Express.js · MySQL
+
+A full-stack educational platform focused on online learning and course management.
+
+Features include:
+
+* Course browsing
+* Course details
+* Enrolled courses
+* Payment functionality
+* Course creation
+* Course management
+
+**Repository:**
+https://github.com/SaikatTalukder7/Ed-tech
+
+---
+
+### 📖 Library Book Manager
+
+**Technology:** Python
+
+A Python-based application developed for managing library book information.
+
+**Repository:**
+https://github.com/SaikatTalukder7/library-book-manager
+
+---
+
+## 🎓 Education
+
+### B.Sc. in Computer Science & Engineering
+
+**Metropolitan University, Bangladesh**
+
+**Current Status:** 3rd Year
+**CGPA:** 3.50
+
+### Relevant Coursework
+
+* Structured Programming
+* Data Structures
+* Algorithms
+* Operating Systems
+* Computer Organization & Architecture
+* Communication Engineering
+* Database Management Systems
+* Software Engineering & Design Patterns
+* Theory of Computation
+* Artificial Intelligence
+
+---
+
+## 🧠 Technical Skills
+
+### Programming Languages
+
+`C` · `C++` · `Python` · `Java` · `JavaScript` · `SQL` · `Bash`
+
+### Web & Backend
+
+`HTML` · `CSS` · `React` · `Node.js` · `Express.js` · `Axios`
+
+### Database & Tools
+
+`MySQL` · `XAMPP` · `Git` · `GitHub` · `Linux`
+
+### Areas of Interest
+
+`Cloud Computing` · `DevOps` · `Backend Development` · `Software Engineering` · `Problem Solving` · `Competitive Programming`
+
+### Currently Learning
+
+`Linux & Command Line` · `AWS` · `Docker` · `Cloud Computing`
+
+---
+
+## 📜 Certifications & Learning
+
+* **Programming for Everybody (Getting Started with Python)** — Coursera
+* **Mastering Python: From Zero to Hero**
+* **CS50P: Introduction to Programming with Python**
+
+Current learning focus:
+
+```text
+Python
+   ↓
+Linux
+   ↓
+Cloud Computing
+   ↓
+AWS
+   ↓
+Docker
+   ↓
+DevOps
+```
+
+---
+
+## 🏆 Programming Profiles
+
+| Platform          | Username / Profile                                              |
+| ----------------- | --------------------------------------------------------------- |
+| 🟣 **GitHub**     | [SaikatTalukder7](https://github.com/SaikatTalukder7)           |
+| 🏆 **Codeforces** | [SaikatTalukder](https://codeforces.com/profile/SaikatTalukder) |
+| 🟠 **CodeChef**   | [saikatt07](https://www.codechef.com/users/saikatt07)           |
+| 📊 **Kaggle**     | [Saikat Talukder](https://www.kaggle.com/saikattalukder7)       |
+| 🟡 **LeetCode**   | [LeetCode](https://leetcode.com/)                               |
+
+---
+
+## 🎯 Career Interests
+
+My current career interests include:
+
+* **Python-based Cloud & DevOps**
+* **Cloud Infrastructure**
+* **Backend Development**
+* **Software Engineering**
+* **Cloud Computing**
+* **Research & Emerging Technologies**
+
+I am interested in opportunities involving:
+
+* Internships
+* Research collaborations
+* Software development projects
+* Cloud and DevOps projects
+* Technology-focused collaborations
+
+---
+
+## 📬 Contact
+
+Feel free to reach out for internships, research collaborations, software development projects, or technical collaborations.
+
+| Platform          | Contact                                                         |
+| ----------------- | --------------------------------------------------------------- |
+| 📧 **Email**      | [saikat60mu@gmail.com](mailto:saikat60mu@gmail.com)             |
+| 💼 **LinkedIn**   | [Saikat Talukder](https://linkedin.com/in/saikattalukder7)      |
+| 🐙 **GitHub**     | [SaikatTalukder7](https://github.com/SaikatTalukder7)           |
+| 🏆 **Codeforces** | [SaikatTalukder](https://codeforces.com/profile/SaikatTalukder) |
+| 🟠 **CodeChef**   | [saikatt07](https://www.codechef.com/users/saikatt07)           |
+| 📱 **WhatsApp**   | [+880 1932283514](https://wa.me/8801932283514)                  |
+
+---
+
+## 📄 License
+
+This project is open source and available under the **MIT License**.
+
+See the [LICENSE](LICENSE) file for details.
+
+---
+
+<p align="center">
+  <strong>Saikat Talukder</strong><br/>
+  B.Sc. in Computer Science & Engineering<br/>
+  Metropolitan University, Bangladesh
+</p>
