@@ -25,14 +25,14 @@ export const codingTrack = [
   },
   {
     platform: 'LeetCode',
-    handle: 'your-leetcode-username',
+    handle: 'leetcode e code kori na',
     url: 'https://leetcode.com/your-leetcode-username',
-  }, // ekhane pore amar LeetCode username dibo 
+  }, // ekhane kunudin code amar LeetCode username dibo 
   {
     platform: 'Kaggle',
     handle: 'Saikat Talukder',
     url: 'https://www.kaggle.com/saikattalukder7',
-  }, // ekhane amar Kaggle username dibo
+  },
 ]
 
 // Amar skill gula category onujayi rakha hoyeche
