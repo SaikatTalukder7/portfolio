@@ -1,4 +1,11 @@
-# Saikat Talukder | Personal Portfolio
+<h1 align="center">
+  Saikat Talukder · Personal Portfolio
+</h1>
+
+<p align="center">
+  <strong>CSE Student · Cloud & DevOps Enthusiast</strong><br/>
+  Metropolitan University, Bangladesh
+</p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/React-Vite-61DAFB?style=for-the-badge&logo=react&logoColor=white" alt="React + Vite">
@@ -6,10 +13,6 @@
   <img src="https://img.shields.io/badge/Vercel-Deployed-000000?style=for-the-badge&logo=vercel" alt="Vercel">
   <img src="https://img.shields.io/badge/Status-Live-brightgreen?style=for-the-badge" alt="Status">
   <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License">
-</p>
-
-<p align="center">
-  <strong>CSE Student · Cloud & DevOps Enthusiast · Software Developer</strong>
 </p>
 
 <p align="center">
@@ -24,7 +27,7 @@
 
 This repository contains my personal portfolio website, developed to showcase my **academic journey, technical skills, projects, programming profiles, and career interests**.
 
-The website is built with **React and Vite** with a responsive interface designed for desktop, tablet, and mobile devices.
+The website is built with **React and Vite**, with a responsive interface designed for desktop, tablet, and mobile devices.
 
 My current career direction focuses on **Python-based Cloud & DevOps**, backend development, software engineering, and research-oriented opportunities.
 
@@ -32,24 +35,26 @@ My current career direction focuses on **Python-based Cloud & DevOps**, backend 
 
 ## 🌐 Live Website
 
-Visit the portfolio:
-
-### [🚀 portfolio-one-lac-zvkd2yllja.vercel.app](https://portfolio-one-lac-zvkd2yllja.vercel.app/)
+<p align="center">
+  <a href="https://portfolio-one-lac-zvkd2yllja.vercel.app/">
+    <img src="https://img.shields.io/badge/Visit%20My%20Portfolio-portfolio--one--lac--zvkd2yllja.vercel.app-000000?style=for-the-badge&logo=vercel" alt="Live Portfolio">
+  </a>
+</p>
 
 ---
 
 ## 📌 Portfolio Highlights
 
-The website currently includes:
+The website includes:
 
-* 🏠 Personal introduction and hero section
+* 🏠 Personal introduction
 * 👨‍💻 About section
 * 🛠️ Technical skills
 * 🚀 Featured projects
 * 🎓 Academic background
 * 🏆 Competitive programming profiles
 * 📜 Certifications and learning
-* 📄 Online resume
+* 📄 Resume
 * 📬 Contact information
 * ☁️ Cloud & DevOps career interests
 
@@ -58,28 +63,28 @@ The website currently includes:
 ## ✨ Key Features
 
 * **Responsive Layout**
-  Designed to work smoothly across different screen sizes.
+  Designed to work across desktop, tablet, and mobile devices.
 
 * **React Component Architecture**
   Portfolio sections are organized into reusable React components.
 
-* **Modern UI**
-  Clean and colorful interface with a focus on readability and usability.
+* **Modern Interface**
+  Clean and colorful design focused on readability and usability.
 
 * **Project Showcase**
-  Displays selected academic and personal projects with their technologies and repository links.
+  Displays selected academic and personal projects with technologies and repository links.
 
 * **Resume Access**
   Includes direct access to my current resume.
 
 * **Programming Profiles**
-  Links to my competitive programming and developer profiles.
+  Provides links to my GitHub, Codeforces, CodeChef, and Kaggle profiles.
 
-* **Smooth User Experience**
-  Navigation and page sections are designed for a simple browsing experience.
+* **Smooth Navigation**
+  Simple navigation between different portfolio sections.
 
 * **Vercel Deployment**
-  The portfolio is deployed through Vercel and connected with GitHub.
+  Deployed and hosted using Vercel.
 
 ---
 
@@ -151,7 +156,7 @@ portfolio/
 
 ### Requirements
 
-Before running the project, make sure you have:
+Make sure you have:
 
 * **Node.js 18+**
 * **npm**
@@ -181,13 +186,13 @@ The terminal will provide the local development URL.
 
 ## 📦 Production Build
 
-Create the production build using:
+Create an optimized production build:
 
 ```bash
 npm run build
 ```
 
-Vite will generate the optimized files inside:
+The generated files will be placed inside:
 
 ```text
 dist/
@@ -203,7 +208,7 @@ npm run preview
 
 ## 🚀 Deployment
 
-The website is deployed using **Vercel**.
+The portfolio is deployed using **Vercel** and connected to the GitHub repository.
 
 ### Deployment Flow
 
@@ -219,14 +224,14 @@ Local Development
  Live Portfolio
 ```
 
-**Live URL:**
+**Live Website:**
 https://portfolio-one-lac-zvkd2yllja.vercel.app/
 
-The GitHub repository is connected to Vercel, allowing future updates to be deployed after pushing changes to the repository.
+Future changes can be pushed to GitHub and deployed through the connected Vercel project.
 
 ---
 
-## 💻 Featured Projects
+## 💼 Featured Projects
 
 ### 🎓 University Management System
 
@@ -344,7 +349,7 @@ https://github.com/SaikatTalukder7/library-book-manager
 * **Mastering Python: From Zero to Hero**
 * **CS50P: Introduction to Programming with Python**
 
-Current learning focus:
+### Current Learning Path
 
 ```text
 Python
@@ -364,13 +369,12 @@ DevOps
 
 ## 🏆 Programming Profiles
 
-| Platform          | Username / Profile                                              |
+| Platform          | Profile                                                         |
 | ----------------- | --------------------------------------------------------------- |
 | 🟣 **GitHub**     | [SaikatTalukder7](https://github.com/SaikatTalukder7)           |
 | 🏆 **Codeforces** | [SaikatTalukder](https://codeforces.com/profile/SaikatTalukder) |
 | 🟠 **CodeChef**   | [saikatt07](https://www.codechef.com/users/saikatt07)           |
 | 📊 **Kaggle**     | [Saikat Talukder](https://www.kaggle.com/saikattalukder7)       |
-| 🟡 **LeetCode**   | [LeetCode](https://leetcode.com/)                               |
 
 ---
 
@@ -387,7 +391,7 @@ My current career interests include:
 
 I am interested in opportunities involving:
 
-* Internships
+* Internship opportunities
 * Research collaborations
 * Software development projects
 * Cloud and DevOps projects
@@ -406,6 +410,7 @@ Feel free to reach out for internships, research collaborations, software develo
 | 🐙 **GitHub**     | [SaikatTalukder7](https://github.com/SaikatTalukder7)           |
 | 🏆 **Codeforces** | [SaikatTalukder](https://codeforces.com/profile/SaikatTalukder) |
 | 🟠 **CodeChef**   | [saikatt07](https://www.codechef.com/users/saikatt07)           |
+| 📊 **Kaggle**     | [Saikat Talukder](https://www.kaggle.com/saikattalukder7)       |
 | 📱 **WhatsApp**   | [+880 1932283514](https://wa.me/8801932283514)                  |
 
 ---
@@ -415,11 +420,3 @@ Feel free to reach out for internships, research collaborations, software develo
 This project is open source and available under the **MIT License**.
 
 See the [LICENSE](LICENSE) file for details.
-
----
-
-<p align="center">
-  <strong>Saikat Talukder</strong><br/>
-  B.Sc. in Computer Science & Engineering<br/>
-  Metropolitan University, Bangladesh
-</p>
