@@ -127,18 +127,3 @@ export const education = {
   ],
 
 }
-
-// Amar contact information
-export const contact = {
-  intro:
-    'Reach out for internships, research, software collaborations, and competitive programming initiatives. Feel free to reach out to me directly.',
-  email: 'saikat60mu@gmail.com',
-  whatsapp: '+880 1932283514',
-  whatsappLink: 'https://wa.me/8801932283514',
-  linkedin: 'https://linkedin.com/in/saikattalukder7',
-  github: 'https://github.com/SaikatTalukder7',
-  location: 'Subidbajar, Sylhet, Bangladesh',
-  codeforces: 'https://codeforces.com/profile/SaikatTalukder',
-  codechef: 'https://www.codechef.com/users/saikatt07',
-
-}
