@@ -1,6 +1,13 @@
 /* This CSS section styles the Contact section (info list, social icons, message form). */
+
 .contact .section-head p {
   margin-top: 10px;
+}
+
+/* Light mode e Contact description ektu dark */
+
+[data-theme="light"] .contact .section-head p {
+  color: #3f4652;
 }
 
 .contact-grid {
@@ -11,6 +18,7 @@
 }
 
 /* Info list */
+
 .info-list {
   display: flex;
   flex-direction: column;
@@ -47,6 +55,7 @@ a.info-value:hover {
 }
 
 /* Social icons */
+
 .social-block {
   margin-top: 24px;
 }
@@ -56,6 +65,12 @@ a.info-value:hover {
   font-size: 0.82rem;
   color: var(--text-muted);
   margin-bottom: 12px;
+}
+
+/* Light mode e Connect on Social Networks ektu dark */
+
+[data-theme="light"] .social-label {
+  color: #3f4652;
 }
 
 .social-icons {
@@ -71,9 +86,20 @@ a.info-value:hover {
   height: 38px;
   border-radius: 50%;
   border: 1px solid var(--border);
-  color: var(--text-muted);
-  transition: color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+  color: #ffffff;
+  transition:
+    color 0.15s ease,
+    border-color 0.15s ease,
+    transform 0.15s ease;
 }
+
+/* Light mode e social logo black */
+
+[data-theme="light"] .social-icon {
+  color: #171a21;
+}
+
+/* Cursor upore nile current accent color */
 
 .social-icon:hover {
   color: var(--accent);
@@ -82,6 +108,7 @@ a.info-value:hover {
 }
 
 /* Form */
+
 .contact-form {
   display: flex;
   flex-direction: column;
@@ -100,6 +127,12 @@ a.info-value:hover {
   color: var(--text-muted);
 }
 
+/* Light mode e form label black */
+
+[data-theme="light"] .contact-form label {
+  color: #000000;
+}
+
 .contact-form input,
 .contact-form textarea {
   font-family: var(--font-body);
@@ -116,6 +149,7 @@ a.info-value:hover {
 .contact-form textarea:focus {
   outline: none;
   border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
 }
 
 .contact-form button {
@@ -123,6 +157,12 @@ a.info-value:hover {
   border: none;
   cursor: pointer;
   margin-top: 4px;
+}
+
+/* Light mode e Send Message button er text white */
+
+[data-theme="light"] .contact-form button {
+  color: #ffffff;
 }
 
 @media (max-width: 780px) {

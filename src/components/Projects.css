@@ -12,13 +12,16 @@
   gap: 28px;
   padding: 28px;
   background: var(--bg-raised);
-  border: 1px solid var(--border);
+  border: 1.5px solid var(--border);
   border-radius: var(--radius);
-  transition: border-color 0.15s ease;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
 }
 
 .project:hover {
-  border-color: rgba(79, 163, 247, 0.4);
+  border-color: #2563eb;
+  box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.08);
 }
 
 .project:has(.project-media) {
@@ -39,7 +42,14 @@
   max-width: 70ch;
 }
 
+/* Light mode e project description ektu dark */
+
+[data-theme="light"] .project-desc {
+  color: #3f4652;
+}
+
 /* Amar contribution gula ekhane show kore */
+
 .project-contribution {
   display: flex;
   flex-wrap: wrap;
@@ -63,6 +73,7 @@
 }
 
 /* Project er tech stack */
+
 .project-tech {
   display: flex;
   flex-wrap: wrap;
@@ -79,7 +90,14 @@
   border-radius: 6px;
 }
 
+/* Light mode e tech stack ektu dark */
+
+[data-theme="light"] .project-tech li {
+  color: #3f4652;
+}
+
 /* GitHub repository link */
+
 .project-link {
   display: inline-block;
   color: var(--accent);
@@ -93,6 +111,7 @@
 }
 
 /* Project image thakle ekhane show kore */
+
 .project-media {
   border-radius: 8px;
   overflow: hidden;

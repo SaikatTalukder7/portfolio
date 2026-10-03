@@ -23,6 +23,7 @@
 }
 
 /* Amar profile photo */
+
 .hero-photo {
   width: 300px;
   height: 300px;
@@ -53,6 +54,7 @@
 }
 
 /* Amar availability status */
+
 .hero-status {
   display: inline-flex;
   align-items: center;
@@ -76,6 +78,7 @@
 }
 
 /* Hero er main buttons */
+
 .hero-buttons {
   display: flex;
   gap: 14px;
@@ -89,8 +92,11 @@
   border-radius: 8px;
   font-weight: 600;
   font-size: 0.95rem;
-  transition: transform 0.15s ease, background 0.15s ease,
-    border-color 0.15s ease, color 0.15s ease;
+  transition:
+    transform 0.15s ease,
+    background 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
 }
 
 .btn-primary {
@@ -121,6 +127,12 @@
 .btn-ghost:hover {
   transform: translateY(-2px);
   color: var(--text);
+}
+
+/* Light mode e primary button er text white */
+
+[data-theme="light"] .btn-primary {
+  color: #ffffff;
 }
 
 @media (max-width: 640px) {

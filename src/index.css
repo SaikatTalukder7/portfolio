@@ -25,7 +25,31 @@
   --radius: 10px;
 }
 
+/* Light theme */
+
+[data-theme="light"] {
+  --bg: #f5f7fa;
+  --bg-raised: #ffffff;
+  --surface: #ffffff;
+  --border: #b8bec9;
+  --text: #171a21;
+  --text-muted: #5f6877;
+  --accent: #2563eb;
+  --accent-soft: rgba(37, 99, 235, 0.1);
+  --accent-strong: #1d4ed8;
+}
+
+/* Light mode e secondary text ektu dark */
+
+[data-theme="light"] .about p,
+[data-theme="light"] .contact .section-head p,
+[data-theme="light"] .hero-sub,
+[data-theme="light"] .hero-status {
+  color: #3f4652;
+}
+
 /* Basic reset so padding/border don't add to element width */
+
 * {
   box-sizing: border-box;
 }
@@ -45,6 +69,7 @@ body {
 }
 
 /* Headings use the monospace "display" font for a coding/terminal feel */
+
 h1,
 h2,
 h3,
@@ -77,6 +102,7 @@ button {
 }
 
 /* Container automatically adjusts with screen size */
+
 .container {
   width: 92%;
   max-width: var(--content-width);
@@ -84,6 +110,7 @@ button {
 }
 
 /* Shared section wrapper */
+
 .section {
   padding: 88px 0;
   border-top: 1px solid var(--border);
@@ -99,6 +126,7 @@ button {
 }
 
 /* Visible focus outline for keyboard navigation */
+
 a:focus-visible,
 button:focus-visible {
   outline: 2px solid var(--accent);
@@ -106,7 +134,23 @@ button:focus-visible {
   border-radius: 4px;
 }
 
+/* Smooth theme transition */
+
+body,
+.navbar,
+.project,
+.project-media,
+.navbar-links,
+input,
+textarea {
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
 /* Respect the user's OS setting to reduce motion/animations */
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -120,6 +164,7 @@ button:focus-visible {
 }
 
 /* Smaller section padding on mobile screens */
+
 @media (max-width: 640px) {
   .container {
     width: 90%;

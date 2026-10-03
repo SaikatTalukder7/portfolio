@@ -41,6 +41,7 @@
 }
 
 /* Amar coursework gula tag akare show kore */
+
 .education-tags {
   display: flex;
   flex-wrap: wrap;
@@ -55,7 +56,14 @@
   border-radius: 6px;
 }
 
+/* Light mode e coursework text ektu dark */
+
+[data-theme="light"] .education-tags li {
+  color: #3f4652;
+}
+
 /* Amar academic and project activity */
+
 .education-activity li {
   position: relative;
   padding-left: 16px;

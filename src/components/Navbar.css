@@ -9,6 +9,10 @@
   border-bottom: 1px solid var(--border);
 }
 
+[data-theme="light"] .navbar {
+  background: rgba(255, 255, 255, 0.85);
+}
+
 .navbar-inner {
   display: flex;
   align-items: center;
@@ -27,6 +31,39 @@
   color: var(--accent);
 }
 
+/* Theme button and navigation links */
+
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+/* Dark / Light mode button */
+
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  background: none;
+  border: none;
+  color: var(--text);
+  font-size: 1.15rem;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: color 0.15s ease, background-color 0.15s ease;
+}
+
+.theme-toggle:hover {
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+/* Navigation links */
+
 .navbar-links {
   display: flex;
   gap: 28px;
@@ -43,6 +80,7 @@
 }
 
 /* Mobile screen er hamburger button */
+
 .navbar-toggle {
   display: none;
   flex-direction: column;
@@ -65,6 +103,7 @@
 }
 
 /* Menu open hole hamburger icon ta cross hoy */
+
 .navbar-toggle.is-open span:nth-child(1) {
   transform: translateY(7px) rotate(45deg);
 }
@@ -80,6 +119,10 @@
 @media (max-width: 720px) {
   .navbar-toggle {
     display: flex;
+  }
+
+  .navbar-actions {
+    gap: 16px;
   }
 
   .navbar-links {
