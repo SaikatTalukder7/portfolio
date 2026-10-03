@@ -16,7 +16,7 @@
 </p>
 
 <p align="center">
-  <a href="https://portfolio-one-lac-zvkd2yllja.vercel.app/">🌐 Live Portfolio</a> ·
+  <a href="https://saikattalukder7.vercel.app/">🌐 Live Portfolio</a> ·
   <a href="https://github.com/SaikatTalukder7">GitHub</a> ·
   <a href="https://linkedin.com/in/saikattalukder7">LinkedIn</a>
 </p>
@@ -36,8 +36,8 @@ My current career direction focuses on **Python-based Cloud & DevOps**, backend 
 ## 🌐 Live Website
 
 <p align="center">
-  <a href="https://portfolio-one-lac-zvkd2yllja.vercel.app/">
-    <img src="https://img.shields.io/badge/Visit%20My%20Portfolio-portfolio--one--lac--zvkd2yllja.vercel.app-000000?style=for-the-badge&logo=vercel" alt="Live Portfolio">
+  <a href="https://saikattalukder7.vercel.app/">
+    <img src="https://img.shields.io/badge/Visit%20My%20Portfolio-saikattalukder7.vercel.app-000000?style=for-the-badge&logo=vercel" alt="Live Portfolio">
   </a>
 </p>
 
@@ -225,7 +225,7 @@ Local Development
 ```
 
 **Live Website:**
-https://portfolio-one-lac-zvkd2yllja.vercel.app/
+https://saikattalukder7.vercel.app/
 
 Future changes can be pushed to GitHub and deployed through the connected Vercel project.
 
