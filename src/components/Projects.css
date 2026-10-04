@@ -16,19 +16,39 @@
   border-radius: var(--radius);
 }
 
-.project:hover {
+.project.project-zoom {
   border-color: var(--accent);
   box-shadow: 0 0 22px var(--accent-soft);
-  animation: projectZoom .3s ease-in-out forwards;
+  animation: projectZoomIn .3s ease-in-out forwards;
 }
 
-@keyframes projectZoom {
+@keyframes projectZoomIn {
   from {
     transform: scale(1);
   }
 
   to {
     transform: scale(1.015);
+  }
+}
+
+.project.project-zoom {
+  animation: projectZoomIn .3s ease-in-out forwards;
+}
+
+/* Cursor card theke ber hole smooth zoom-out */
+
+.project:not(.project-zoom) {
+  animation: projectZoomOut .25s ease-in-out forwards;
+}
+
+@keyframes projectZoomOut {
+  from {
+    transform: scale(1.015);
+  }
+
+  to {
+    transform: scale(1);
   }
 }
 
@@ -123,6 +143,7 @@
 }
 
 @media (max-width: 780px) {
+
   .project,
   .project:has(.project-media) {
     grid-template-columns: 1fr;
@@ -133,7 +154,9 @@
   }
 
   /* Mobile e hover zoom off rakha holo */
-  .project:hover {
+
+  .project.project-zoom {
+    animation: none;
     transform: none;
   }
 }

@@ -1,9 +1,13 @@
 // Projects section
 // Project gula portfolioData.js theke ashe and card akare show kore.
+
+import { useState } from 'react'
 import { projects } from '../data/portfolioData.js'
 import './Projects.css'
 
 function Projects() {
+  const [hoveredProject, setHoveredProject] = useState(null)
+
   return (
     <section id="projects" className="section projects">
       <div className="container">
@@ -14,7 +18,12 @@ function Projects() {
         <div className="projects-list">
           {/* Prottek project er jonno ekta kore card create kore */}
           {projects.map((project) => (
-            <article className="project" key={project.title}>
+            <article
+              className={`project ${hoveredProject === project.title ? 'project-zoom' : ''}`}
+              key={project.title}
+              onMouseEnter={() => setHoveredProject(project.title)}
+              onMouseLeave={() => setHoveredProject(null)}
+            >
               <div className="project-body">
                 <h3 className="project-title">{project.title}</h3>
                 <p className="project-desc">{project.description}</p>
