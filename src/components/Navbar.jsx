@@ -39,7 +39,10 @@ function Navbar() {
       <div className="container navbar-inner">
 
         <a href="#top" className="navbar-logo" onClick={closeMenu}>
-          Saikat<span className="navbar-logo-dot">_</span>Talukder
+          <span className="navbar-logo-mark">ST</span>
+          <span>
+            Saikat<span className="navbar-logo-dot">_</span>Talukder
+          </span>
         </a>
 
         <div className="navbar-actions">
