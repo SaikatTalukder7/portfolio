@@ -1,4 +1,3 @@
-
 export const profile = {
   name: 'Saikat Talukder',
   role: 'CSE Student · Cloud & DevOps Enthusiast',
@@ -7,8 +6,8 @@ export const profile = {
   year: '3rd Year',
   cgpa: '3.50',
   bio: `I'm a Computer Science and Engineering student at Metropolitan University with a strong interest in software development and problem solving. I enjoy learning through practical projects and competitive programming, while building my skills in Python, Java, web technologies, Linux, cloud computing, and DevOps. My long-term goal is to build a career in Cloud and DevOps with a strong Python foundation.`,
-  photo: '/images/saikat.png', // ekhane amar photo rekhechi
-  resumeUrl: '/resume.pdf', // ekhane amar resume rakhbo
+  photo: '/images/saikat.png',
+  resumeUrl: '/resume.pdf',
 }
 
 // Coding platform er amar profile gula
@@ -27,7 +26,7 @@ export const codingTrack = [
     platform: 'LeetCode',
     handle: 'leetcode e code kori na',
     url: 'https://leetcode.com/your-leetcode-username',
-  }, // ekhane kunudin code amar LeetCode username dibo 
+  },
   {
     platform: 'Kaggle',
     handle: 'Saikat Talukder',
@@ -37,7 +36,18 @@ export const codingTrack = [
 
 // Amar skill gula category onujayi rakha hoyeche
 export const skills = {
-  Languages: ['C', 'C++', 'Python', 'Java', 'JavaScript', 'SQL', 'Bash', 'HTML', 'CSS'],
+  Languages: [
+    'C',
+    'C++',
+    'Python',
+    'Java',
+    'JavaScript',
+    'SQL',
+    'Bash',
+    'HTML',
+    'CSS',
+  ],
+
   'Tools & Technologies': [
     'Git',
     'GitHub',
@@ -48,8 +58,9 @@ export const skills = {
     'MySQL',
     'XAMPP',
     'Java Swing / AWT',
-    'Axios'
+    'Axios',
   ],
+
   'Areas of Interest': [
     'Cloud Computing',
     'DevOps',
@@ -58,6 +69,7 @@ export const skills = {
     'Competitive Programming',
     'Software Engineering',
   ],
+
   'Currently Learning': [
     'Linux & Command Line',
     'Cloud Computing',
@@ -76,6 +88,7 @@ export const projects = [
     link: 'https://github.com/SaikatTalukder7/University_Management_System',
     image: '/images/UniversityManagementSystem.png',
   },
+
   {
     title: 'Autonomous Navigation Car',
     description:
@@ -84,11 +97,20 @@ export const projects = [
     link: 'https://github.com/SaikatTalukder7/Autonomous-Navigation-Car',
     image: '/images/AutonomousNavigationCar.jpeg',
   },
+
   {
     title: 'Ed-tech',
     description:
       'A full stack educational platform for online learning. Built the course-facing modules: browsing courses, course details, enrolled courses, payments, course creation, and course management.',
-    tech: ['React', 'JavaScript', 'Axios', 'Node.js', 'Express.js', 'MySQL', 'XAMPP'],
+    tech: [
+      'React',
+      'JavaScript',
+      'Axios',
+      'Node.js',
+      'Express.js',
+      'MySQL',
+      'XAMPP',
+    ],
     contribution: [
       'Courses page',
       'Course Details',
@@ -100,30 +122,43 @@ export const projects = [
     link: 'https://github.com/SaikatTalukder7/Ed-tech',
     image: '/images/EdTech.png',
   },
+
   {
     title: 'Library Book Manager',
-    description: 'Add a short description of what this project does and the problem it solves.',
+    description:
+      'Add a short description of what this project does and the problem it solves.',
     tech: ['Python'],
     link: 'https://github.com/SaikatTalukder7/library-book-manager',
     image: null,
   },
 ]
 
-// Amar university er education details
-export const education = {
-  degree: 'B.Sc. in Computer Science & Engineering',
-  university: 'Metropolitan University, Bangladesh',
-  status: '3rd Year · CGPA 3.50',
-  coursework: [
-    'Structured Programming',
-    'Data Structures', 'Algorithm',
-    'Operating Systems',
-    'Computer Organization & Architecture',
-    'Communication Engineering',
-    'Database Management Systems',
-    'Software Engineering & Design Pattern',
-    'Theory of Computation',
-    'Artificial Intelligence',
-  ],
+// Amar education details
+export const education = [
+  {
+    time: '2024 - Present',
+    degree: 'BSc in Computer Science & Engineering',
+    institution: 'Metropolitan University',
+    location: '📍 Bateshwar, Sylhet-3104, Bangladesh',
+    status: 'CSE · 3rd Year',
+    result: 'CGPA 3.50',
+  },
 
-}
+  {
+    time: '2020 - 2022',
+    degree: 'Higher Secondary Certificate (HSC)',
+    institution: 'Blue Bird School & College, Sylhet',
+    location: '📍 Mirer Moydan, Sylhet',
+    group: 'Science',
+    result: 'GPA 4.72',
+  },
+
+  {
+    time: '2018 - 2020',
+    degree: 'Secondary School Certificate (SSC)',
+    institution: 'Govt. Jubilee High School, SUnamganj',
+    location: '📍 Sunamganj',
+    group: 'Science',
+    result: 'GPA 4.67',
+  },
+]

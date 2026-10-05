@@ -1,91 +1,254 @@
-/* Education section er degree card and coursework tags */
-
-.education-entry {
-  display: grid;
-  grid-template-columns: 1fr 1.3fr;
-  gap: 48px;
-  padding: 28px;
-  background: var(--bg-raised);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-}
-
-.education-main h3 {
-  font-size: 1.1rem;
-  margin-bottom: 8px;
-}
-
-.education-university {
-  color: var(--text);
-  margin-bottom: 4px;
-}
-
-.education-status {
-  font-family: var(--font-display);
-  color: var(--accent);
-  font-size: 0.85rem;
-}
-
-.education-details {
+/* Education section er education card and icon style */
+.education-list {
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: 22px;
+  gap: 20px;
 }
 
-.education-details h4 {
-  font-family: var(--font-body);
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  font-weight: 600;
-  margin-bottom: 10px;
+/* 3 ta education icon ke connect kora vertical line */
+.education-list::before {
+  content: '';
+  position: absolute;
+  left: 21px;
+  top: 22px;
+  bottom: 22px;
+  width: 1.5px;
+  background: var(--accent);
+  opacity: 0.55;
+  z-index: 0;
 }
 
-/* Amar coursework gula tag akare show kore */
-
-.education-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.education-tags li {
-  font-size: 0.78rem;
-  color: var(--text-muted);
-  border: 1px solid var(--border);
-  padding: 5px 10px;
-  border-radius: 6px;
-}
-
-/* Light mode e coursework text ektu dark */
-
-[data-theme="light"] .education-tags li {
-  color: #3f4652;
-}
-
-/* Amar academic and project activity */
-
-.education-activity li {
+/* Prottek education item */
+.education-entry {
   position: relative;
-  padding-left: 16px;
-  color: var(--text-muted);
-  font-size: 0.9rem;
+  padding-left: 64px;
+  transform-origin: center;
+  transition: transform 0.35s ease-in-out;
+  z-index: 1;
+}
+
+/* Cursor card ba icon er upor nile puro education item smoothly zoom hobe */
+.education-entry:hover {
+  transform: scale(1.015);
+}
+
+/* Education icon */
+.education-icon {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 44px;
+  height: 44px;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+  border: 1.5px solid var(--border);
+  border-radius: 9px;
+  z-index: 2;
+  transition: border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+/* Emoji size */
+.education-icon span {
+  font-size: 21px;
+  line-height: 1;
+}
+
+/* University icon ektu larger */
+.education-icon-0 {
+  width: 48px;
+  height: 48px;
+  left: -2px;
+}
+.education-icon-0 span {
+  font-size: 24px;
+}
+
+/* Hover korle icon glow */
+.education-entry:hover .education-icon {
+  border-color: var(--accent);
+  box-shadow: 0 0 22px var(--accent-soft);
+}
+
+/* Main education card */
+.education-card {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr auto;
+  align-items: center;
+  gap: 28px;
+  min-height: 130px;
+  padding: 24px 28px;
+  background: var(--bg-raised);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  transition: border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+/* Hover e card glow */
+.education-entry:hover .education-card {
+  border-color: var(--accent);
+  box-shadow: 0 0 22px var(--accent-soft);
+}
+
+/* Left side */
+.education-left {
+  min-width: 0;
+}
+.education-left h3 {
+  font-size: 1.45rem;
+  margin-bottom: 12px;
+  color: var(--text);
+}
+.education-time {
+  color: var(--text);
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+}
+
+/* Light mode e BSc / HSC / SSC and year pure black */
+[data-theme="light"] .education-left h3,
+[data-theme="light"] .education-time {
+  color: #000000;
+}
+
+/* Middle side */
+.education-middle {
+  min-width: 0;
+}
+
+/* Institution */
+.education-institution {
+  color: var(--text);
+  font-size: 1.20rem;
+  font-weight: 600;
   margin-bottom: 6px;
 }
 
-.education-activity li::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 9px;
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--accent);
+/* Degree / Program */
+.education-program {
+  color: var(--text);
+  font-size: 0.75rem;
+  margin-bottom: 5px;
 }
 
+/* Location, Group, Status and Result */
+.education-meta {
+  color: var(--text);
+  font-size: 0.75rem;
+}
+
+/* Light mode e sob education text pure black */
+[data-theme="light"] .education-institution,
+[data-theme="light"] .education-program,
+[data-theme="light"] .education-meta {
+  color: #000000;
+}
+
+/* Dark mode e normal white */
+[data-theme="dark"] .education-institution,
+[data-theme="dark"] .education-program,
+[data-theme="dark"] .education-meta {
+  color: var(--text);
+}
+
+/* Right side */
+.education-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* Running / Completed badge */
+.education-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 82px;
+  padding: 7px 12px;
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  color: var(--accent);
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+  background: var(--accent-soft);
+}
+
+/* Completed badge */
+.education-status.completed {
+  color: #000000;
+  border-color: #50ee8f;
+  background: #50ee8f;
+}
+
+/* Running badge */
+.education-status.running {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+/* Mobile */
 @media (max-width: 780px) {
+  .education-list {
+    gap: 18px;
+  }
+  /* Mobile e connecting line */
+  .education-list::before {
+    left: 40px;
+    top: 20px;
+    bottom: 20px;
+  }
   .education-entry {
+    padding-left: 0;
+    padding-top: 48px;
+  }
+  /* Mobile e icon card er upore */
+  .education-icon {
+    left: 20px;
+    top: 0;
+    width: 40px;
+    height: 40px;
+    transform: none;
+  }
+  .education-icon span {
+    font-size: 19px;
+  }
+  .education-icon-0 {
+    left: 18px;
+    width: 42px;
+    height: 42px;
+  }
+  .education-icon-0 span {
+    font-size: 21px;
+  }
+  /* Mobile e card single column */
+  .education-card {
     grid-template-columns: 1fr;
-    gap: 28px;
+    gap: 16px;
+    padding: 22px;
+  }
+  .education-left h3 {
+    margin-bottom: 8px;
+  }
+  /* Status niche thakbe */
+  .education-right {
+    justify-content: flex-start;
+  }
+  /* Mobile e zoom off */
+  .education-entry:hover {
+    transform: none;
+  }
+  .education-entry:hover .education-card {
+    border-color: var(--border);
+    box-shadow: none;
+  }
+  .education-entry:hover .education-icon {
+    border-color: var(--border);
+    box-shadow: none;
   }
 }
