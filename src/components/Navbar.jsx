@@ -38,7 +38,18 @@ function Navbar() {
     <header className="navbar">
       <div className="container navbar-inner">
 
-        <a href="#top" className="navbar-logo" onClick={closeMenu}>
+        <a
+          href="#top"
+          className="navbar-logo"
+          onClick={(e) => {
+            e.preventDefault()
+            closeMenu()
+            window.scrollTo({
+              top: 0,
+              behavior: 'smooth',
+            })
+          }}
+        >
           <span className="navbar-logo-mark">ST</span>
           <span>
             Saikat<span className="navbar-logo-dot">_</span>Talukder
