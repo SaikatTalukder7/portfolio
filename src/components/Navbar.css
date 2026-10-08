@@ -1,5 +1,4 @@
 /* Navbar section er top bar and mobile menu */
-
 .navbar {
   position: sticky;
   top: 0;
@@ -8,37 +7,16 @@
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--border);
 }
-
 [data-theme="light"] .navbar {
   background: rgba(255, 255, 255, 0.85);
 }
-
-.navbar-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 64px;/* Navbar section er top bar and mobile menu */
-
-.navbar {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  background: rgba(31, 38, 52, 0.85);
-  backdrop-filter: blur(8px);
-  border-bottom: 1px solid var(--border);
-}
-
-[data-theme="light"] .navbar {
-  background: rgba(255, 255, 255, 0.85);
-}
-
 .navbar-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 64px;
 }
-
+/* Navbar logo */
 .navbar-logo {
   display: flex;
   align-items: center;
@@ -48,7 +26,6 @@
   font-weight: 700;
   color: var(--text);
 }
-
 .navbar-logo-mark {
   display: flex;
   align-items: center;
@@ -61,21 +38,16 @@
   font-size: 1rem;
   font-weight: 700;
 }
-
 .navbar-logo-dot {
   color: var(--accent);
 }
-
 /* Theme button and navigation links */
-
 .navbar-actions {
   display: flex;
   align-items: center;
   gap: 28px;
 }
-
 /* Dark / Light mode button */
-
 .theme-toggle {
   display: flex;
   align-items: center;
@@ -86,36 +58,48 @@
   background: none;
   border: none;
   color: var(--text);
-  font-size: 1.15rem;
   cursor: pointer;
   border-radius: 50%;
-  transition: color 0.15s ease, background-color 0.15s ease;
+  transition:
+    color 0.25s ease,
+    background-color 0.25s ease;
 }
-
+/* Theme icon */
+.theme-icon {
+  width: 19px;
+  height: 19px;
+  display: block;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition:
+    transform 0.35s ease,
+    color 0.25s ease;
+}
+/* Theme button hover */
 .theme-toggle:hover {
   color: var(--accent);
   background: var(--accent-soft);
 }
-
+.theme-toggle:hover .theme-icon {
+  transform: rotate(18deg) scale(1.08);
+}
 /* Navigation links */
-
 .navbar-links {
   display: flex;
   gap: 28px;
 }
-
 .navbar-links a {
   font-size: 0.92rem;
   color: var(--text-muted);
   transition: color 0.15s ease;
 }
-
 .navbar-links a:hover {
   color: var(--text);
 }
-
 /* Mobile screen er hamburger button */
-
 .navbar-toggle {
   display: none;
   flex-direction: column;
@@ -128,39 +112,33 @@
   cursor: pointer;
   padding: 0;
 }
-
 .navbar-toggle span {
   display: block;
   height: 2px;
   width: 100%;
   background: var(--text);
-  transition: transform 0.2s ease, opacity 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
 }
-
 /* Menu open hole hamburger icon ta cross hoy */
-
 .navbar-toggle.is-open span:nth-child(1) {
   transform: translateY(7px) rotate(45deg);
 }
-
 .navbar-toggle.is-open span:nth-child(2) {
   opacity: 0;
 }
-
 .navbar-toggle.is-open span:nth-child(3) {
   transform: translateY(-7px) rotate(-45deg);
 }
-
+/* Mobile */
 @media (max-width: 720px) {
-
   .navbar-toggle {
     display: flex;
   }
-
   .navbar-actions {
     gap: 16px;
   }
-
   .navbar-links {
     position: absolute;
     top: 64px;
@@ -174,143 +152,15 @@
     overflow: hidden;
     transition: max-height 0.25s ease;
   }
-
   .navbar-links.is-open {
     max-height: 300px;
   }
-
   .navbar-links a {
     padding: 16px 24px;
     border-top: 1px solid var(--border);
   }
-}
-}
-
-.navbar-logo {
-  font-family: var(--font-display);
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: var(--text);
-}
-
-.navbar-logo-dot {
-  color: var(--accent);
-}
-
-/* Theme button and navigation links */
-
-.navbar-actions {
-  display: flex;
-  align-items: center;
-  gap: 28px;
-}
-
-/* Dark / Light mode button */
-
-.theme-toggle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  padding: 0;
-  background: none;
-  border: none;
-  color: var(--text);
-  font-size: 1.15rem;
-  cursor: pointer;
-  border-radius: 50%;
-  transition: color 0.15s ease, background-color 0.15s ease;
-}
-
-.theme-toggle:hover {
-  color: var(--accent);
-  background: var(--accent-soft);
-}
-
-/* Navigation links */
-
-.navbar-links {
-  display: flex;
-  gap: 28px;
-}
-
-.navbar-links a {
-  font-size: 0.92rem;
-  color: var(--text-muted);
-  transition: color 0.15s ease;
-}
-
-.navbar-links a:hover {
-  color: var(--text);
-}
-
-/* Mobile screen er hamburger button */
-
-.navbar-toggle {
-  display: none;
-  flex-direction: column;
-  justify-content: center;
-  gap: 5px;
-  width: 32px;
-  height: 32px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-}
-
-.navbar-toggle span {
-  display: block;
-  height: 2px;
-  width: 100%;
-  background: var(--text);
-  transition: transform 0.2s ease, opacity 0.2s ease;
-}
-
-/* Menu open hole hamburger icon ta cross hoy */
-
-.navbar-toggle.is-open span:nth-child(1) {
-  transform: translateY(7px) rotate(45deg);
-}
-
-.navbar-toggle.is-open span:nth-child(2) {
-  opacity: 0;
-}
-
-.navbar-toggle.is-open span:nth-child(3) {
-  transform: translateY(-7px) rotate(-45deg);
-}
-
-@media (max-width: 720px) {
-  .navbar-toggle {
-    display: flex;
-  }
-
-  .navbar-actions {
-    gap: 16px;
-  }
-
-  .navbar-links {
-    position: absolute;
-    top: 64px;
-    left: 0;
-    right: 0;
-    flex-direction: column;
-    gap: 0;
-    background: var(--bg-raised);
-    border-bottom: 1px solid var(--border);
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.25s ease;
-  }
-
-  .navbar-links.is-open {
-    max-height: 300px;
-  }
-
-  .navbar-links a {
-    padding: 16px 24px;
-    border-top: 1px solid var(--border);
+  /* Mobile e theme icon tap animation */
+  .theme-toggle:active .theme-icon {
+    transform: scale(0.92);
   }
 }
