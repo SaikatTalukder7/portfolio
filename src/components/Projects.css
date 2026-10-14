@@ -137,68 +137,65 @@
 /* Tablet */
 @media (max-width: 900px) {
   .projects-list {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 14px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
   }
 
   .project {
-    padding: 14px;
+    padding: 18px;
   }
 
   .project-title {
-    font-size: 0.95rem;
+    font-size: 1rem;
   }
 }
 
 /* Mobile */
 @media (max-width: 600px) {
   .projects-list {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 8px;
+    grid-template-columns: 1fr;
+    gap: 20px;
   }
 
   .project {
-    padding: 9px;
-    gap: 10px;
-    border-radius: 12px;
+    padding: 18px;
+    gap: 12px;
   }
 
   .project-title {
-    font-size: 0.76rem;
+    font-size: 1.05rem;
     line-height: 1.4;
   }
 
   .project-desc {
-    font-size: 0.68rem;
-    line-height: 1.5;
+    font-size: 0.9rem;
+    line-height: 1.6;
   }
 
   .project-media img {
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 16 / 10;
   }
 
   .project-tech {
-    gap: 4px;
+    gap: 8px;
   }
 
   .project-tech li {
-    font-size: 0.58rem;
-    padding: 3px 5px;
+    font-size: 0.75rem;
+    padding: 4px 10px;
   }
 
   .project-link {
-    padding: 7px 8px;
-    border-radius: 7px;
-    font-size: 0.65rem;
-    overflow-wrap: anywhere;
+    padding: 9px 13px;
+    border-radius: 10px;
+    font-size: 0.85rem;
   }
 }
 
 /* Very small phones */
 @media (max-width: 360px) {
-  .project-link {
-    font-size: 0.58rem;
-    padding: 6px;
+  .project {
+    padding: 14px;
   }
 }
 
