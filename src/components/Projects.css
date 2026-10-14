@@ -1,25 +1,33 @@
-/* Projects section er project card and image style */
-
 .projects-list {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  align-items: stretch;
 }
 
 .project {
-  display: grid;
-  grid-template-columns: 1fr 220px;
-  gap: 28px;
-  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+  padding: 22px;
+
   background: var(--bg-raised);
   border: 1.5px solid var(--border);
   border-radius: var(--radius);
+
+  transform: scale(1);
+  transform-origin: center;
+  transition:
+    transform 0.35s ease-in-out,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
 }
 
 .project:hover {
   border-color: var(--accent);
   box-shadow: 0 0 22px var(--accent-soft);
-  animation: projectZoom .35s ease-in-out forwards;
+  animation: projectZoom 0.35s ease-in-out forwards;
 }
 
 @keyframes projectZoom {
@@ -32,26 +40,48 @@
   }
 }
 
-.project:has(.project-media) {
-  grid-template-columns: 1fr 220px;
+/* Photo first */
+.project-media {
+  order: -1;
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
 }
 
-.project:not(:has(.project-media)) {
-  grid-template-columns: 1fr;
+.project-media img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  height: auto;
+  object-fit: cover;
+  transition: transform 0.35s ease-in-out;
+}
+
+.project:hover .project-media img {
+  transform: scale(1.035);
+}
+
+/* Project details */
+.project-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
 }
 
 .project-title {
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   margin-bottom: 10px;
 }
 
 .project-desc {
   margin-bottom: 16px;
-  max-width: 70ch;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
 }
 
-/* Amar contribution gula ekhane show kore */
-
+/* Contribution */
 .project-contribution {
   display: flex;
   flex-wrap: wrap;
@@ -64,22 +94,12 @@
   color: var(--text-muted);
 }
 
-.project-contribution li::after {
-  content: '·';
-  margin-left: 10px;
-  color: var(--border);
-}
-
-.project-contribution li:last-child::after {
-  content: '';
-}
-
-/* Project er tech stack */
-
+/* Tech stack */
 .project-tech {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+  margin-top: 0;
   margin-bottom: 14px;
 }
 
@@ -92,48 +112,105 @@
   border-radius: 6px;
 }
 
-/* GitHub repository link */
-
+/* GitHub link: preserve its existing button styling */
 .project-link {
   display: inline-block;
-  color: var(--accent);
-  font-size: 0.9rem;
+  margin-top: auto;
+  align-self: flex-start;
+  padding: 9px 13px;
+  border: 1px solid var(--accent, #8ab4f8);
+  border-radius: 10px;
+  color: var(--accent, #8ab4f8);
+  text-decoration: none;
+  font-size: 0.85rem;
   font-weight: 600;
-  border-bottom: 1px solid transparent;
+  transition:
+    background 0.25s ease,
+    color 0.25s ease;
 }
 
 .project-link:hover {
-  border-bottom-color: var(--accent);
+  background: var(--accent, #8ab4f8);
+  color: var(--bg, #10141c);
 }
 
-/* Project image thakle ekhane show kore */
+/* Tablet */
+@media (max-width: 900px) {
+  .projects-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+  }
 
-.project-media {
-  border-radius: 8px;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  align-self: start;
+  .project {
+    padding: 14px;
+  }
+
+  .project-title {
+    font-size: 0.95rem;
+  }
 }
 
-.project-media img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  display: block;
+/* Mobile */
+@media (max-width: 600px) {
+  .projects-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .project {
+    padding: 9px;
+    gap: 10px;
+    border-radius: 12px;
+  }
+
+  .project-title {
+    font-size: 0.76rem;
+    line-height: 1.4;
+  }
+
+  .project-desc {
+    font-size: 0.68rem;
+    line-height: 1.5;
+  }
+
+  .project-media img {
+    aspect-ratio: 1 / 1;
+  }
+
+  .project-tech {
+    gap: 4px;
+  }
+
+  .project-tech li {
+    font-size: 0.58rem;
+    padding: 3px 5px;
+  }
+
+  .project-link {
+    padding: 7px 8px;
+    border-radius: 7px;
+    font-size: 0.65rem;
+    overflow-wrap: anywhere;
+  }
 }
 
-@media (max-width: 780px) {
+/* Very small phones */
+@media (max-width: 360px) {
+  .project-link {
+    font-size: 0.58rem;
+    padding: 6px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
   .project,
-  .project:has(.project-media) {
-    grid-template-columns: 1fr;
+  .project-media img,
+  .project-link {
+    transition: none;
   }
 
-  .project-media {
-    order: -1;
-  }
-
-  /* Mobile e hover zoom off rakha holo */
-  .project:hover {
+  .project:hover,
+  .project:hover .project-media img {
     transform: none;
   }
 }

@@ -79,11 +79,12 @@ export const skills = {
 }
 
 // Amar portfolio te dekhano project gula
+
 export const projects = [
   {
     title: 'University Management System',
     description:
-      'A desktop based system for managing student information and university operations registration, updating and deleting student records, viewing student and department information, admission rules, and a login system.',
+      'A Java desktop application for managing student records and university information, including adding, updating, and deleting records, viewing department details, admission rules, and user login.',
     tech: ['Java', 'Java Swing', 'Java AWT'],
     link: 'https://github.com/SaikatTalukder7/University_Management_System',
     image: '/images/UniversityManagementSystem.png',
@@ -92,7 +93,7 @@ export const projects = [
   {
     title: 'Autonomous Navigation Car',
     description:
-      'An autonomous navigation car that reads its environment through sensors and makes automated movement decisions focused on embedded systems and navigation logic.',
+      'An autonomous car that uses sensors for navigation and movement.',
     tech: ['Embedded Systems', 'Sensors', 'Microcontroller', 'C/C++'],
     link: 'https://github.com/SaikatTalukder7/Autonomous-Navigation-Car',
     image: '/images/AutonomousNavigationCar.jpeg',
@@ -101,7 +102,7 @@ export const projects = [
   {
     title: 'Ed-tech',
     description:
-      'A full stack educational platform for online learning. Built the course-facing modules: browsing courses, course details, enrolled courses, payments, course creation, and course management.',
+      'A full-stack learning platform for browsing courses, managing enrollments, and handling payments.',
     tech: [
       'React',
       'JavaScript',
@@ -126,12 +127,22 @@ export const projects = [
   {
     title: 'Library Book Manager',
     description:
-      'Add a short description of what this project does and the problem it solves.',
+      'A Python application for managing library books.',
     tech: ['Python'],
     link: 'https://github.com/SaikatTalukder7/library-book-manager',
-    image: null,
+    image: '/images/library.png',
+  },
+
+  {
+    title: 'Flappy Bird',
+    description:
+      'A classic Flappy Bird game built with Python and Pygame.',
+    tech: ['Python', 'Pygame'],
+    link: 'https://github.com/SaikatTalukder7/Flappy-Bird-Python',
+    image: '/images/flappy.png',
   },
 ]
+
 
 // Amar education details
 export const education = [
