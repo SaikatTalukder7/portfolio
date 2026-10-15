@@ -1,3 +1,4 @@
+
 import { useEffect, useRef, useState } from 'react'
 import {
   SiPython,
@@ -31,7 +32,6 @@ import { FaCss3Alt, FaJava } from 'react-icons/fa6'
 import './Skills.css'
 
 const techNodes = [
-  // AI, ML & Computer Vision
   { id: 'python', label: 'Python', Icon: SiPython, x: 7.6, y: 25.0, color: '#3776ab', category: 'Language / AI' },
   { id: 'pandas', label: 'Pandas', Icon: SiPandas, x: 5.5, y: 41.0, color: 'rgba(0, 94, 255, 1)', category: 'Data Science' },
   { id: 'pytorch', label: 'PyTorch', Icon: SiPytorch, x: 27.5, y: 72.0, color: '#ee4c2c', category: 'Deep Learning / NLP' },
@@ -39,13 +39,11 @@ const techNodes = [
   { id: 'opencv', label: 'OpenCV', Icon: SiOpencv, x: 18.0, y: 22.0, color: '#5c3cfb', category: 'Computer Vision / Robotics' },
   { id: 'sklearn', label: 'Scikit-Learn', Icon: SiScikitlearn, x: 15.0, y: 68.0, color: '#f7931e', category: 'Machine Learning' },
 
-  // Core Languages & Systems
   { id: 'java', label: 'Java', Icon: FaJava, x: 13.2, y: 40.0, color: '#ea2d2e', category: 'Language' },
   { id: 'cpp', label: 'C++', Icon: SiCplusplus, x: 9.4, y: 55.0, color: '#00599c', category: 'Algorithms / CP' },
   { id: 'c', label: 'C', Icon: SiC, x: 26.5, y: 49.5, color: '#A8B9CC', category: 'Systems / Embedded' },
   { id: 'php', label: 'PHP', Icon: SiPhp, x: 69.0, y: 77.0, color: '#777bb4', category: 'Backend' },
 
-  // Frontend & Mobile
   { id: 'react', label: 'React', Icon: SiReact, x: 32.1, y: 16.5, color: '#61dafb', category: 'Frontend' },
   { id: 'next', label: 'Next.js', Icon: SiNextdotjs, x: 41.5, y: 14.0, color: '#1df500ff', category: 'Full-Stack' },
   { id: 'html5', label: 'HTML5', Icon: SiHtml5, x: 50.8, y: 16.5, color: '#e34f26', category: 'Frontend' },
@@ -56,7 +54,6 @@ const techNodes = [
   { id: 'flutter', label: 'Flutter', Icon: SiFlutter, x: 40.5, y: 58.5, color: '#02569b', category: 'Mobile App' },
   { id: 'android', label: 'Android', Icon: SiAndroid, x: 67.0, y: 63.5, color: '#3ddc84', category: 'Mobile Dev' },
 
-  // Backend, Cloud & Databases
   { id: 'node', label: 'Node.js', Icon: SiNodedotjs, x: 75.5, y: 44.5, color: '#339933', category: 'Backend Runtime' },
   { id: 'express', label: 'Express.js', Icon: SiExpress, x: 84.5, y: 48.0, color: '#3e9e98ff', category: 'Backend API' },
   { id: 'firebase', label: 'Firebase', Icon: SiFirebase, x: 67.6, y: 28.0, color: '#ffca28', category: 'Cloud / BaaS' },
@@ -64,7 +61,6 @@ const techNodes = [
   { id: 'mysql', label: 'MySQL', Icon: SiMysql, x: 86.5, y: 31.0, color: '#0284c7', category: 'Relational DB' },
   { id: 'mongodb', label: 'MongoDB', Icon: SiMongodb, x: 81.0, y: 63.0, color: '#16a34a', category: 'NoSQL Database' },
 
-  // DevOps & Tooling
   { id: 'docker', label: 'Docker', Icon: SiDocker, x: 57.8, y: 48.5, color: '#2496ed', category: 'DevOps / Containers' },
   { id: 'linux', label: 'Linux', Icon: SiLinux, x: 56.0, y: 67.0, color: '#f59e0b', category: 'Operating System' },
   { id: 'git', label: 'Git', Icon: SiGit, x: 47.0, y: 76.5, color: '#f05032', category: 'Version Control' }
@@ -146,6 +142,29 @@ function Skills() {
   const containerRef = useRef(null)
   const [activeNode, setActiveNode] = useState(null)
 
+  const isTouchDevice = () =>
+    window.matchMedia('(hover: none), (pointer: coarse)').matches
+
+  const handleNodeMouseEnter = (node) => {
+    if (!isTouchDevice()) {
+      setActiveNode(node)
+    }
+  }
+
+  const handleNodeMouseLeave = () => {
+    if (!isTouchDevice()) {
+      setActiveNode(null)
+    }
+  }
+
+  const handleNodeClick = (event, node) => {
+    event.currentTarget.blur()
+
+    if (isTouchDevice()) {
+      setActiveNode(node)
+    }
+  }
+
   useEffect(() => {
     const canvas = canvasRef.current
     const container = containerRef.current
@@ -188,7 +207,6 @@ function Skills() {
       const isLight =
         document.documentElement.getAttribute('data-theme') === 'light'
 
-      // Background stars
       stars.forEach((star) => {
         star.y -= star.speed
 
@@ -210,7 +228,6 @@ function Skills() {
         ctx.fill()
       })
 
-      // Constellation connections
       connections.forEach(([id1, id2]) => {
         const n1 = techNodes.find((node) => node.id === id1)
         const n2 = techNodes.find((node) => node.id === id2)
@@ -276,7 +293,19 @@ function Skills() {
         <div
           ref={containerRef}
           className="constellation-wrapper reveal-on-scroll"
-          onMouseLeave={() => setActiveNode(null)}
+          onMouseLeave={() => {
+            if (!isTouchDevice()) {
+              setActiveNode(null)
+            }
+          }}
+          onClick={(event) => {
+            if (
+              isTouchDevice() &&
+              !event.target.closest('.constellation-node')
+            ) {
+              setActiveNode(null)
+            }
+          }}
         >
           <canvas
             ref={canvasRef}
@@ -298,11 +327,24 @@ function Skills() {
                   top: `${node.y}%`,
                   '--node-color': node.color
                 }}
-                onMouseEnter={() => setActiveNode(node)}
-                onMouseLeave={() => setActiveNode(null)}
-                onFocus={() => setActiveNode(node)}
-                onBlur={() => setActiveNode(null)}
-                onClick={(event) => event.currentTarget.blur()}
+                onMouseEnter={() => handleNodeMouseEnter(node)}
+                onMouseLeave={handleNodeMouseLeave}
+                onTouchStart={() => {
+                  if (isTouchDevice()) {
+                    setActiveNode(node)
+                  }
+                }}
+                onFocus={() => {
+                  if (!isTouchDevice()) {
+                    setActiveNode(node)
+                  }
+                }}
+                onBlur={() => {
+                  if (!isTouchDevice()) {
+                    setActiveNode(null)
+                  }
+                }}
+                onClick={(event) => handleNodeClick(event, node)}
                 aria-label={`${node.label}: ${node.category}`}
               >
                 <span className="node-circle">

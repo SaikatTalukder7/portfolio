@@ -1,3 +1,4 @@
+
 /* Skills section */
 
 .skills-header-top {
@@ -87,27 +88,22 @@
   transition: transform 0.12s ease;
 }
 
-/* Glow ONLY while the pointer is over a logo */
-
+/* Desktop hover glow */
 
 .constellation-node:hover .node-circle {
   transform: scale(1.16);
-  /* Hover korle logo circle koto boro hobe */
   border-color: var(--node-color) !important;
-  /* Circle border-er color */
-
   box-shadow:
-    0 0 2px 0px var(--node-color), /* Inner glow: prothom layer */
-    0 0 4px 1px var(--node-color), /* Middle glow: majher layer */
-    0 0 6px 1px var(--node-color) !important;  /* Outer glow: bairer layer */
+    0 0 2px 0px var(--node-color),
+    0 0 4px 1px var(--node-color),
+    0 0 6px 1px var(--node-color) !important;
 }
 
 .constellation-node:hover .node-icon-svg {
   transform: scale(1.12);
 }
 
-
-/* Remove persistent glow from active and focused states */
+/* Active state */
 
 .constellation-node.is-active .node-circle {
   box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
@@ -127,7 +123,7 @@
   transform: none;
 }
 
-/* Selected skill name at the bottom-right */
+/* Selected skill name */
 
 .constellation-tooltip {
   position: absolute;
@@ -209,12 +205,6 @@
   color: var(--text, #111827);
 }
 
-/* Official black logos remain visible in light and dark modes */
-
-[data-theme='light'] .constellation-node[style*="--node-color: rgb(0, 0, 0)"] .node-icon-svg {
-  color: #000000;
-}
-
 /* Responsive layout */
 
 @media (max-width: 720px) {
@@ -278,10 +268,44 @@
   }
 }
 
+/* Android: tapped logo and connected lines stay glowing */
+
+@media (hover: none), (pointer: coarse) {
+  .constellation-node:hover .node-circle {
+    transform: none;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
+    border-color: #334155 !important;
+  }
+
+  .constellation-node:hover .node-icon-svg {
+    transform: none;
+  }
+
+  .constellation-node.is-active .node-circle {
+    transform: scale(1.16);
+    border-color: var(--node-color) !important;
+    box-shadow:
+      0 0 2px 0px var(--node-color),
+      0 0 4px 1px var(--node-color),
+      0 0 6px 1px var(--node-color) !important;
+  }
+
+  .constellation-node.is-active .node-icon-svg {
+    transform: scale(1.12);
+  }
+
+  [data-theme='light'] .constellation-node:hover .node-circle {
+    border-color: #646669 !important;
+  }
+
+  [data-theme='light'] .constellation-node.is-active .node-circle {
+    border-color: var(--node-color) !important;
+  }
+}
+
 /* Respect reduced-motion preferences */
 
 @media (prefers-reduced-motion: reduce) {
-
   .node-circle,
   .node-icon-svg {
     transition: none;
