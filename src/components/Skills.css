@@ -1,37 +1,264 @@
-/* Skills section er category and skill tags */
+/* Skills section */
 
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 36px 48px;
+.skills-header-top {
+  margin-bottom: 28px;
 }
 
-.skills-group-title {
+.skills-section-sub {
+  margin-top: 10px;
+  color: var(--text-muted);
   font-size: 0.95rem;
-  color: var(--text);
-  margin-bottom: 14px;
-  font-weight: 700;
+  line-height: 1.6;
 }
 
-.skills-tags {
+/* Main constellation area */
+
+.constellation-wrapper {
+  position: relative;
+  width: 100%;
+  height: clamp(360px, 40vw, 480px);
+  overflow: hidden;
+  isolation: isolate;
+  border: 1px solid var(--border, rgba(128, 128, 128, 0.18));
+  border-radius: 18px;
+  background:
+    radial-gradient(
+      ellipse at 48% 45%,
+      rgba(99, 102, 241, 0.07),
+      transparent 65%
+    ),
+    var(--surface, rgba(15, 23, 42, 0.16));
+}
+
+/* Canvas containing stars and connection lines */
+
+.constellation-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: block;
+  pointer-events: none;
+}
+
+/* Individual technology nodes */
+
+.constellation-node {
+  position: absolute;
+  z-index: 2;
   display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  transform: translate(-50%, -50%);
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
-.skills-tags li {
-  font-family: var(--font-display);
-  font-size: 0.8rem;
-  color: var(--accent-strong);
-  background: var(--accent-soft);
-  border: 1px solid rgba(79, 163, 247, 0.28);
-  padding: 6px 12px;
-  border-radius: 6px;
+.node-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid #334155;
+  border-radius: 50%;
+  background: #000000;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
 }
+
+.node-icon-svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  color: var(--node-color);
+  transition: transform 0.25s ease;
+}
+
+/* Active and hover states */
+
+.constellation-node:hover .node-circle,
+.constellation-node.is-active .node-circle,
+.constellation-node:focus-visible .node-circle {
+  transform: scale(1.16);
+  border-color: #334155;
+  box-shadow:
+    0 0 10px color-mix(in srgb, var(--node-color) 60%, transparent),
+    0 0 25px color-mix(in srgb, var(--node-color) 60%, transparent);
+}
+
+.constellation-node:hover .node-icon-svg,
+.constellation-node.is-active .node-icon-svg {
+  transform: scale(1.12);
+}
+
+.constellation-node:focus-visible {
+  outline: 2px solid var(--node-color);
+  outline-offset: 3px;
+}
+
+/* Selected skill name at the bottom-right */
+
+.constellation-tooltip {
+  position: absolute;
+  z-index: 5;
+  right: 16px;
+  bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  max-width: calc(100% - 32px);
+  padding: 10px 16px;
+  border: 1px solid var(--border, rgba(148, 163, 184, 0.25));
+  border-radius: 12px;
+  background: var(--bg, #111827);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  text-align: right;
+  pointer-events: none;
+  animation: skillTooltipIn 0.2s ease;
+}
+
+@keyframes skillTooltipIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tooltip-category {
+  color: var(--text-muted, #9ca3af);
+  font-size: 0.72rem;
+  line-height: 1.4;
+}
+
+.tooltip-title {
+  color: var(--color-muted, #f8fafc);
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+/* Light theme */
+
+[data-theme='light'] .constellation-wrapper {
+  background:
+    radial-gradient(
+      ellipse at 48% 45%,
+      rgba(109, 40, 217, 0.045),
+      transparent 65%
+    ),
+    var(--surface, #f8fafc);
+}
+
+[data-theme='light'] .node-circle {
+  background: #ffffff;
+  border-color: #646669;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
+}
+
+[data-theme='light'] .constellation-node:hover .node-circle,
+[data-theme='light'] .constellation-node.is-active .node-circle,
+[data-theme='light'] .constellation-node:focus-visible .node-circle {
+  border-color: #334155;
+}
+
+[data-theme='light'] .constellation-tooltip {
+  background: var(--bg, #ffffff);
+}
+
+[data-theme='light'] .tooltip-title {
+  color: var(--text, #111827);
+}
+
+/* Official black logos remain visible in light and dark modes */
+
+[data-theme='light'] .constellation-node[style*="--node-color: rgb(0, 0, 0)"] .node-icon-svg {
+  color: #000000;
+}
+
+/* Responsive layout */
 
 @media (max-width: 720px) {
-  .skills-grid {
-    grid-template-columns: 1fr;
-    gap: 28px;
+  .constellation-wrapper {
+    height: 440px;
+    border-radius: 14px;
+  }
+
+  .constellation-node {
+    width: 38px;
+    height: 38px;
+  }
+
+  .node-circle {
+    width: 32px;
+    height: 32px;
+  }
+
+  .node-icon-svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .constellation-tooltip {
+    right: 10px;
+    bottom: 10px;
+    padding: 8px 12px;
+  }
+
+  .tooltip-title {
+    font-size: 0.9rem;
+  }
+
+  .tooltip-category {
+    font-size: 0.66rem;
+  }
+
+  .skills-section-sub {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .constellation-wrapper {
+    height: 380px;
+  }
+
+  .constellation-node {
+    width: 32px;
+    height: 32px;
+  }
+
+  .node-circle {
+    width: 28px;
+    height: 28px;
+  }
+
+  .node-icon-svg {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .node-circle,
+  .node-icon-svg {
+    transition: none;
+  }
+
+  .constellation-tooltip {
+    animation: none;
   }
 }

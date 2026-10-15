@@ -5,7 +5,11 @@ export const profile = {
   university: 'Metropolitan University, Bangladesh',
   year: '3rd Year',
   cgpa: '3.50',
-  bio: `I'm a Computer Science and Engineering student at Metropolitan University with a strong interest in software development and problem solving. I enjoy learning through practical projects and competitive programming, while building my skills in Python, Java, web technologies, Linux, cloud computing, and DevOps. My long-term goal is to build a career in Cloud and DevOps with a strong Python foundation.`,
+  bio: `I'm a CSE student at Metropolitan University with an interest in programming, problem solving, and software development. I enjoy working on practical projects, practicing competitive programming, and learning new technologies.
+
+I work with Python, Java, and C++, and I'm also exploring web development, Linux, and cloud technologies. Currently, I'm focusing on improving my Python skills and learning more about Cloud Computing and DevOps.
+
+My goal is to build a career in Cloud and DevOps, gain practical experience, and keep improving as a developer by building projects and learning new things.`,
   photo: '/images/saikat.png',
   resumeUrl: '/resume.pdf',
 }
