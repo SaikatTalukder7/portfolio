@@ -145,6 +145,37 @@ function Skills() {
   const isTouchDevice = () =>
     window.matchMedia('(hover: none), (pointer: coarse)').matches
 
+  // Mobile-e logo chara page-er jekono jaygay tap korle glow off.
+  useEffect(() => {
+    const handleOutsideTap = (event) => {
+      if (!isTouchDevice()) return
+
+      if (!event.target.closest('.constellation-node')) {
+        setActiveNode(null)
+      }
+    }
+
+    document.addEventListener('pointerdown', handleOutsideTap, true)
+
+    return () => {
+      document.removeEventListener('pointerdown', handleOutsideTap, true)
+    }
+  }, [])
+
+  // Theme change hole glow off.
+  useEffect(() => {
+    const observer = new MutationObserver(() => {
+      setActiveNode(null)
+    })
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme']
+    })
+
+    return () => observer.disconnect()
+  }, [])
+
   const handleNodeMouseEnter = (node) => {
     if (!isTouchDevice()) {
       setActiveNode(node)
@@ -248,7 +279,7 @@ function Skills() {
         ctx.lineTo(x2, y2)
 
         if (isHighlighted) {
-          ctx.strokeStyle = 'rgb(138, 180, 248)'
+          ctx.strokeStyle = 'rgba(138, 180, 248, 0.8)'
           ctx.lineWidth = 1.8
         } else {
           ctx.strokeStyle = isLight
@@ -293,14 +324,6 @@ function Skills() {
           className="constellation-wrapper reveal-on-scroll"
           onMouseLeave={() => {
             if (!isTouchDevice()) {
-              setActiveNode(null)
-            }
-          }}
-          onClick={(event) => {
-            if (
-              isTouchDevice() &&
-              !event.target.closest('.constellation-node')
-            ) {
               setActiveNode(null)
             }
           }}
