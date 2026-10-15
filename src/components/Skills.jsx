@@ -299,8 +299,10 @@ function Skills() {
                   '--node-color': node.color
                 }}
                 onMouseEnter={() => setActiveNode(node)}
+                onMouseLeave={() => setActiveNode(null)}
                 onFocus={() => setActiveNode(node)}
                 onBlur={() => setActiveNode(null)}
+                onClick={(event) => event.currentTarget.blur()}
                 aria-label={`${node.label}: ${node.category}`}
               >
                 <span className="node-circle">

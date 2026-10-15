@@ -22,11 +22,9 @@
   border: 1px solid var(--border, rgba(128, 128, 128, 0.18));
   border-radius: 18px;
   background:
-    radial-gradient(
-      ellipse at 48% 45%,
+    radial-gradient(ellipse at 48% 45%,
       rgba(99, 102, 241, 0.07),
-      transparent 65%
-    ),
+      transparent 65%),
     var(--surface, rgba(15, 23, 42, 0.16));
 }
 
@@ -56,9 +54,12 @@
   border-radius: 50%;
   background: transparent;
   color: inherit;
-  cursor: pointer;
+  cursor: default;
   -webkit-tap-highlight-color: transparent;
+  outline: none;
 }
+
+/* Logo circle */
 
 .node-circle {
   display: flex;
@@ -71,38 +72,59 @@
   background: #000000;
   box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
   transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease;
+    transform 0.12s ease,
+    box-shadow 0.12s ease,
+    border-color 0.12s ease;
 }
+
+/* Technology logo */
 
 .node-icon-svg {
   width: 20px;
   height: 20px;
   flex-shrink: 0;
   color: var(--node-color);
-  transition: transform 0.25s ease;
+  transition: transform 0.12s ease;
 }
 
-/* Active and hover states */
+/* Glow ONLY while the pointer is over a logo */
 
-.constellation-node:hover .node-circle,
-.constellation-node.is-active .node-circle,
-.constellation-node:focus-visible .node-circle {
+
+.constellation-node:hover .node-circle {
   transform: scale(1.16);
-  border-color: #334155;
+  /* Hover korle logo circle koto boro hobe */
+  border-color: var(--node-color) !important;
+  /* Circle border-er color */
+
   box-shadow:
-    0 0 10px color-mix(in srgb, var(--node-color) 60%, transparent),
-    0 0 25px color-mix(in srgb, var(--node-color) 60%, transparent);
+    0 0 2px 0px var(--node-color), /* Inner glow: prothom layer */
+    0 0 4px 1px var(--node-color), /* Middle glow: majher layer */
+    0 0 6px 1px var(--node-color) !important;  /* Outer glow: bairer layer */
 }
 
-.constellation-node:hover .node-icon-svg,
-.constellation-node.is-active .node-icon-svg {
+.constellation-node:hover .node-icon-svg {
   transform: scale(1.12);
+}
+
+
+/* Remove persistent glow from active and focused states */
+
+.constellation-node.is-active .node-circle {
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
+}
+
+.constellation-node.is-active .node-icon-svg {
+  transform: none;
 }
 
 .constellation-node:focus-visible {
   outline: 2px solid var(--node-color);
   outline-offset: 3px;
+}
+
+.constellation-node:focus-visible:not(:hover) .node-circle {
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
+  transform: none;
 }
 
 /* Selected skill name at the bottom-right */
@@ -155,11 +177,9 @@
 
 [data-theme='light'] .constellation-wrapper {
   background:
-    radial-gradient(
-      ellipse at 48% 45%,
+    radial-gradient(ellipse at 48% 45%,
       rgba(109, 40, 217, 0.045),
-      transparent 65%
-    ),
+      transparent 65%),
     var(--surface, #f8fafc);
 }
 
@@ -169,10 +189,16 @@
   box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
 }
 
-[data-theme='light'] .constellation-node:hover .node-circle,
-[data-theme='light'] .constellation-node.is-active .node-circle,
-[data-theme='light'] .constellation-node:focus-visible .node-circle {
-  border-color: #334155;
+[data-theme='light'] .constellation-node:hover .node-circle {
+  border-color: var(--node-color);
+}
+
+[data-theme='light'] .constellation-node.is-active .node-circle {
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
+}
+
+[data-theme='light'] .constellation-node:focus-visible:not(:hover) .node-circle {
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
 }
 
 [data-theme='light'] .constellation-tooltip {
@@ -252,7 +278,10 @@
   }
 }
 
+/* Respect reduced-motion preferences */
+
 @media (prefers-reduced-motion: reduce) {
+
   .node-circle,
   .node-icon-svg {
     transition: none;
