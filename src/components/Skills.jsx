@@ -279,7 +279,7 @@ function Skills() {
         ctx.lineTo(x2, y2)
 
         if (isHighlighted) {
-          ctx.strokeStyle = 'rgba(138, 180, 248, 0.8)'
+          ctx.strokeStyle = '#00e5ff'
           ctx.lineWidth = 1.8
         } else {
           ctx.strokeStyle = isLight
