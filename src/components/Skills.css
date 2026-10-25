@@ -1,4 +1,3 @@
-
 /* Skills section */
 
 .skills-header-top {
@@ -12,24 +11,24 @@
   line-height: 1.6;
 }
 
-/* Main constellation area */
+/* Main solar system area */
 
 .constellation-wrapper {
   position: relative;
   width: 100%;
-  height: clamp(360px, 40vw, 480px);
+  height: clamp(400px, min(44vw, 70vh), 520px);
   overflow: hidden;
   isolation: isolate;
   border: 1px solid var(--border, rgba(128, 128, 128, 0.18));
   border-radius: 18px;
   background:
-    radial-gradient(ellipse at 48% 45%,
-      rgba(99, 102, 241, 0.07),
-      transparent 65%),
+    radial-gradient(ellipse at 50% 50%,
+      rgba(245, 158, 11, 0.1),
+      transparent 55%),
     var(--surface, rgba(15, 23, 42, 0.16));
 }
 
-/* Canvas containing stars and connection lines */
+/* Canvas containing stars, orbits and connection lines */
 
 .constellation-canvas {
   position: absolute;
@@ -39,10 +38,12 @@
   pointer-events: none;
 }
 
-/* Individual technology nodes */
+/* Individual technology nodes (position JS theke set hoy) */
 
 .constellation-node {
   position: absolute;
+  left: 0;
+  top: 0;
   z-index: 2;
   display: flex;
   align-items: center;
@@ -50,7 +51,6 @@
   width: 48px;
   height: 48px;
   padding: 0;
-  transform: translate(-50%, -50%);
   border: none;
   border-radius: 50%;
   background: transparent;
@@ -58,11 +58,13 @@
   cursor: default;
   -webkit-tap-highlight-color: transparent;
   outline: none;
+  will-change: transform;
 }
 
 /* Logo circle */
 
 .node-circle {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -123,6 +125,64 @@
   transform: none;
 }
 
+/* The Sun (C) */
+
+.constellation-wrapper .constellation-node.sun {
+  z-index: 3;
+  width: 92px;
+  height: 92px;
+}
+
+.constellation-wrapper .constellation-node.sun .node-circle {
+  width: 76px;
+  height: 76px;
+  border: none;
+  background: radial-gradient(circle at 35% 35%, #fff3b0, #ffb703 45%, #f77f00 100%);
+  box-shadow:
+    0 0 18px 4px rgba(255, 183, 3, 0.55),
+    0 0 60px 18px rgba(247, 127, 0, 0.28) !important;
+}
+
+.constellation-wrapper .constellation-node.sun .node-circle::after {
+  content: '';
+  position: absolute;
+  inset: -16px;
+  z-index: -1;
+  border-radius: 50%;
+  background: radial-gradient(circle,
+    rgba(255, 183, 3, 0.35),
+    transparent 70%);
+  pointer-events: none;
+  animation: sunPulse 4s ease-in-out infinite;
+}
+
+.constellation-wrapper .constellation-node.sun .node-icon-svg {
+  width: 34px;
+  height: 34px;
+  color: #3b1d00;
+}
+
+.constellation-wrapper .constellation-node.sun:hover .node-circle,
+.constellation-wrapper .constellation-node.sun.is-active .node-circle {
+  transform: scale(1.08);
+  border: none !important;
+  box-shadow:
+    0 0 22px 6px rgba(255, 183, 3, 0.7),
+    0 0 80px 26px rgba(247, 127, 0, 0.35) !important;
+}
+
+@keyframes sunPulse {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.12);
+  }
+}
+
 /* Selected skill name */
 
 .constellation-tooltip {
@@ -173,9 +233,9 @@
 
 [data-theme='light'] .constellation-wrapper {
   background:
-    radial-gradient(ellipse at 48% 45%,
-      rgba(109, 40, 217, 0.045),
-      transparent 65%),
+    radial-gradient(ellipse at 50% 50%,
+      rgba(245, 158, 11, 0.12),
+      transparent 55%),
     var(--surface, #f8fafc);
 }
 
@@ -197,6 +257,30 @@
   box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
 }
 
+[data-theme='light'] .constellation-wrapper .constellation-node.sun .node-circle {
+  background: radial-gradient(circle at 35% 35%, #fff3b0, #ffb703 45%, #f77f00 100%);
+  border: none;
+  box-shadow:
+    0 0 14px 4px rgba(247, 127, 0, 0.6),
+    0 0 46px 14px rgba(247, 127, 0, 0.4) !important;
+}
+
+[data-theme='light'] .constellation-wrapper .constellation-node.sun .node-circle::after {
+  inset: -22px;
+  background: radial-gradient(circle,
+    rgba(247, 127, 0, 0.5),
+    rgba(247, 127, 0, 0.22) 55%,
+    transparent 72%);
+  border: 1.5px solid rgba(247, 127, 0, 0.45);
+}
+
+[data-theme='light'] .constellation-wrapper .constellation-node.sun:hover .node-circle,
+[data-theme='light'] .constellation-wrapper .constellation-node.sun.is-active .node-circle {
+  box-shadow:
+    0 0 18px 6px rgba(247, 127, 0, 0.75),
+    0 0 60px 20px rgba(247, 127, 0, 0.5) !important;
+}
+
 [data-theme='light'] .constellation-tooltip {
   background: var(--bg, #ffffff);
 }
@@ -209,7 +293,7 @@
 
 @media (max-width: 720px) {
   .constellation-wrapper {
-    height: 440px;
+    height: 460px;
     border-radius: 14px;
   }
 
@@ -226,6 +310,21 @@
   .node-icon-svg {
     width: 16px;
     height: 16px;
+  }
+
+  .constellation-wrapper .constellation-node.sun {
+    width: 64px;
+    height: 64px;
+  }
+
+  .constellation-wrapper .constellation-node.sun .node-circle {
+    width: 52px;
+    height: 52px;
+  }
+
+  .constellation-wrapper .constellation-node.sun .node-icon-svg {
+    width: 24px;
+    height: 24px;
   }
 
   .constellation-tooltip {
@@ -248,10 +347,6 @@
 }
 
 @media (max-width: 400px) {
-  .constellation-wrapper {
-    height: 380px;
-  }
-
   .constellation-node {
     width: 32px;
     height: 32px;
@@ -301,6 +396,23 @@
   [data-theme='light'] .constellation-node.is-active .node-circle {
     border-color: var(--node-color) !important;
   }
+
+  /* Sun touch device-e sob somoy glow kore */
+  .constellation-wrapper .constellation-node.sun:hover .node-circle {
+    transform: none;
+    border: none !important;
+    box-shadow:
+      0 0 18px 4px rgba(255, 183, 3, 0.55),
+      0 0 60px 18px rgba(247, 127, 0, 0.28) !important;
+  }
+
+  .constellation-wrapper .constellation-node.sun.is-active .node-circle {
+    transform: scale(1.08);
+    border: none !important;
+    box-shadow:
+      0 0 22px 6px rgba(255, 183, 3, 0.7),
+      0 0 80px 26px rgba(247, 127, 0, 0.35) !important;
+  }
 }
 
 /* Respect reduced-motion preferences */
@@ -311,7 +423,9 @@
     transition: none;
   }
 
-  .constellation-tooltip {
+  .constellation-tooltip,
+  .constellation-wrapper .constellation-node.sun .node-circle::after {
     animation: none;
   }
 }
+

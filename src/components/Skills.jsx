@@ -1,4 +1,3 @@
-
 import { useEffect, useRef, useState } from 'react'
 import {
   SiPython,
@@ -31,119 +30,149 @@ import {
 import { FaCss3Alt, FaJava } from 'react-icons/fa6'
 import './Skills.css'
 
+// x/y nai ekhon: position ring + angle theke calculate hoy.
 const techNodes = [
-  { id: 'python', label: 'Python', Icon: SiPython, x: 7.6, y: 25.0, color: '#3776ab', category: 'Language / AI' },
-  { id: 'pandas', label: 'Pandas', Icon: SiPandas, x: 5.5, y: 41.0, color: 'rgba(0, 94, 255, 1)', category: 'Data Science' },
-  { id: 'pytorch', label: 'PyTorch', Icon: SiPytorch, x: 27.5, y: 72.0, color: '#ee4c2c', category: 'Deep Learning / NLP' },
-  { id: 'tensorflow', label: 'TensorFlow', Icon: SiTensorflow, x: 20.0, y: 78.0, color: '#ff6f00', category: 'Deep Learning' },
-  { id: 'opencv', label: 'OpenCV', Icon: SiOpencv, x: 18.0, y: 22.0, color: '#5c3cfb', category: 'Computer Vision / Robotics' },
-  { id: 'sklearn', label: 'Scikit-Learn', Icon: SiScikitlearn, x: 15.0, y: 68.0, color: '#f7931e', category: 'Machine Learning' },
+  { id: 'c', label: 'C', Icon: SiC, color: '#A8B9CC', category: 'Systems / Embedded' },
 
-  { id: 'java', label: 'Java', Icon: FaJava, x: 13.2, y: 40.0, color: '#ea2d2e', category: 'Language' },
-  { id: 'cpp', label: 'C++', Icon: SiCplusplus, x: 9.4, y: 55.0, color: '#00599c', category: 'Algorithms / CP' },
-  { id: 'c', label: 'C', Icon: SiC, x: 26.5, y: 49.5, color: '#A8B9CC', category: 'Systems / Embedded' },
-  { id: 'php', label: 'PHP', Icon: SiPhp, x: 69.0, y: 77.0, color: '#777bb4', category: 'Backend' },
+  { id: 'python', label: 'Python', Icon: SiPython, color: '#3776ab', category: 'Language / AI' },
+  { id: 'pandas', label: 'Pandas', Icon: SiPandas, color: 'rgba(0, 94, 255, 1)', category: 'Data Science' },
+  { id: 'pytorch', label: 'PyTorch', Icon: SiPytorch, color: '#ee4c2c', category: 'Deep Learning / NLP' },
+  { id: 'tensorflow', label: 'TensorFlow', Icon: SiTensorflow, color: '#ff6f00', category: 'Deep Learning' },
+  { id: 'opencv', label: 'OpenCV', Icon: SiOpencv, color: '#5c3cfb', category: 'Computer Vision / Robotics' },
+  { id: 'sklearn', label: 'Scikit-Learn', Icon: SiScikitlearn, color: '#f7931e', category: 'Machine Learning' },
 
-  { id: 'react', label: 'React', Icon: SiReact, x: 32.1, y: 16.5, color: '#61dafb', category: 'Frontend' },
-  { id: 'next', label: 'Next.js', Icon: SiNextdotjs, x: 41.5, y: 14.0, color: '#1df500ff', category: 'Full-Stack' },
-  { id: 'html5', label: 'HTML5', Icon: SiHtml5, x: 50.8, y: 16.5, color: '#e34f26', category: 'Frontend' },
-  { id: 'css3', label: 'CSS3', Icon: FaCss3Alt, x: 42.5, y: 29.5, color: '#264de4', category: 'Frontend' },
-  { id: 'tailwind', label: 'Tailwind CSS', Icon: SiTailwindcss, x: 50.5, y: 35.0, color: '#06b6d4', category: 'Styling' },
-  { id: 'ts', label: 'TypeScript', Icon: SiTypescript, x: 58.2, y: 23.5, color: '#3178c6', category: 'Language / Frontend' },
-  { id: 'js', label: 'JavaScript', Icon: SiJavascript, x: 77.8, y: 13.0, color: '#f7df1e', category: 'Language / Full-Stack' },
-  { id: 'flutter', label: 'Flutter', Icon: SiFlutter, x: 40.5, y: 58.5, color: '#02569b', category: 'Mobile App' },
-  { id: 'android', label: 'Android', Icon: SiAndroid, x: 67.0, y: 63.5, color: '#3ddc84', category: 'Mobile Dev' },
+  { id: 'java', label: 'Java', Icon: FaJava, color: '#ea2d2e', category: 'Language' },
+  { id: 'cpp', label: 'C++', Icon: SiCplusplus, color: '#00599c', category: 'Algorithms / CP' },
+  { id: 'php', label: 'PHP', Icon: SiPhp, color: '#777bb4', category: 'Backend' },
 
-  { id: 'node', label: 'Node.js', Icon: SiNodedotjs, x: 75.5, y: 44.5, color: '#339933', category: 'Backend Runtime' },
-  { id: 'express', label: 'Express.js', Icon: SiExpress, x: 84.5, y: 48.0, color: '#3e9e98ff', category: 'Backend API' },
-  { id: 'firebase', label: 'Firebase', Icon: SiFirebase, x: 67.6, y: 28.0, color: '#ffca28', category: 'Cloud / BaaS' },
-  { id: 'postgres', label: 'PostgreSQL', Icon: SiPostgresql, x: 92.5, y: 21.0, color: '#008cffff', category: 'SQL Database' },
-  { id: 'mysql', label: 'MySQL', Icon: SiMysql, x: 86.5, y: 31.0, color: '#0284c7', category: 'Relational DB' },
-  { id: 'mongodb', label: 'MongoDB', Icon: SiMongodb, x: 81.0, y: 63.0, color: '#16a34a', category: 'NoSQL Database' },
+  { id: 'react', label: 'React', Icon: SiReact, color: '#61dafb', category: 'Frontend' },
+  { id: 'next', label: 'Next.js', Icon: SiNextdotjs, color: '#1df500ff', category: 'Full-Stack' },
+  { id: 'html5', label: 'HTML5', Icon: SiHtml5, color: '#e34f26', category: 'Frontend' },
+  { id: 'css3', label: 'CSS3', Icon: FaCss3Alt, color: '#264de4', category: 'Frontend' },
+  { id: 'tailwind', label: 'Tailwind CSS', Icon: SiTailwindcss, color: '#06b6d4', category: 'Styling' },
+  { id: 'ts', label: 'TypeScript', Icon: SiTypescript, color: '#3178c6', category: 'Language / Frontend' },
+  { id: 'js', label: 'JavaScript', Icon: SiJavascript, color: '#f7df1e', category: 'Language / Full-Stack' },
+  { id: 'flutter', label: 'Flutter', Icon: SiFlutter, color: '#02569b', category: 'Mobile App' },
+  { id: 'android', label: 'Android', Icon: SiAndroid, color: '#3ddc84', category: 'Mobile Dev' },
 
-  { id: 'docker', label: 'Docker', Icon: SiDocker, x: 57.8, y: 48.5, color: '#2496ed', category: 'DevOps / Containers' },
-  { id: 'linux', label: 'Linux', Icon: SiLinux, x: 56.0, y: 67.0, color: '#f59e0b', category: 'Operating System' },
-  { id: 'git', label: 'Git', Icon: SiGit, x: 47.0, y: 76.5, color: '#f05032', category: 'Version Control' }
+  { id: 'node', label: 'Node.js', Icon: SiNodedotjs, color: '#339933', category: 'Backend Runtime' },
+  { id: 'express', label: 'Express.js', Icon: SiExpress, color: '#3e9e98ff', category: 'Backend API' },
+  { id: 'firebase', label: 'Firebase', Icon: SiFirebase, color: '#ffca28', category: 'Cloud / BaaS' },
+  { id: 'postgres', label: 'PostgreSQL', Icon: SiPostgresql, color: '#008cffff', category: 'SQL Database' },
+  { id: 'mysql', label: 'MySQL', Icon: SiMysql, color: '#0284c7', category: 'Relational DB' },
+  { id: 'mongodb', label: 'MongoDB', Icon: SiMongodb, color: '#16a34a', category: 'NoSQL Database' },
+
+  { id: 'docker', label: 'Docker', Icon: SiDocker, color: '#2496ed', category: 'DevOps / Containers' },
+  { id: 'linux', label: 'Linux', Icon: SiLinux, color: '#f59e0b', category: 'Operating System' },
+  { id: 'git', label: 'Git', Icon: SiGit, color: '#f05032', category: 'Version Control' }
+]
+
+// radius = orbit size (0 theke 1), speed = radian/second (bhetore druto, baire dhire)
+const rings = [
+  { radius: 0.26, speed: 0.3, ids: ['cpp', 'java', 'python', 'linux'] },
+  { radius: 0.46, speed: 0.2, ids: ['pandas', 'sklearn', 'opencv', 'tensorflow', 'pytorch', 'docker'] },
+  { radius: 0.68, speed: 0.14, ids: ['html5', 'css3', 'tailwind', 'ts', 'js', 'react', 'next', 'flutter'] },
+  { radius: 0.9, speed: 0.1, ids: ['android', 'node', 'express', 'php', 'firebase', 'mongodb', 'mysql', 'postgres'] }
 ]
 
 const connections = [
+  // C (Sun): onek language/tool er core C te lekha
+  ['c', 'cpp'],
+  ['c', 'python'],
+  ['c', 'php'],
+  ['c', 'linux'],
+  ['c', 'git'],
+  ['c', 'postgres'],
+
+  // Python + AI / Data
   ['python', 'pandas'],
+  ['python', 'sklearn'],
+  ['python', 'pytorch'],
+  ['python', 'tensorflow'],
   ['python', 'opencv'],
-  ['python', 'java'],
-  ['python', 'cpp'],
-  ['python', 'c'],
-  ['python', 'react'],
+  ['python', 'docker'],
   ['pandas', 'sklearn'],
-  ['sklearn', 'pytorch'],
-  ['sklearn', 'tensorflow'],
-  ['tensorflow', 'pytorch'],
-  ['pytorch', 'c'],
-  ['pytorch', 'git'],
-  ['opencv', 'c'],
-  ['opencv', 'react'],
+  ['cpp', 'pytorch'],
+  ['cpp', 'tensorflow'],
+  ['cpp', 'opencv'],
 
-  ['java', 'cpp'],
-  ['java', 'c'],
-  ['cpp', 'c'],
-  ['c', 'flutter'],
-  ['c', 'css3'],
-
-  ['react', 'next'],
-  ['react', 'css3'],
-  ['react', 'html5'],
-  ['react', 'flutter'],
-  ['next', 'html5'],
-  ['next', 'ts'],
-  ['html5', 'css3'],
-  ['html5', 'tailwind'],
-  ['html5', 'ts'],
-  ['css3', 'tailwind'],
-  ['css3', 'flutter'],
-  ['css3', 'ts'],
-  ['tailwind', 'ts'],
-  ['tailwind', 'docker'],
-  ['ts', 'js'],
-  ['ts', 'firebase'],
-  ['ts', 'node'],
-  ['ts', 'docker'],
-
+  // Mobile
+  ['java', 'android'],
+  ['cpp', 'android'],
+  ['cpp', 'flutter'],
   ['flutter', 'android'],
-  ['flutter', 'git'],
-  ['flutter', 'docker'],
-  ['git', 'docker'],
-  ['git', 'linux'],
-  ['git', 'android'],
-  ['linux', 'docker'],
-  ['linux', 'android'],
-  ['linux', 'php'],
-  ['docker', 'android'],
-  ['docker', 'node'],
-  ['android', 'node'],
-  ['android', 'php'],
+  ['flutter', 'firebase'],
+  ['android', 'firebase'],
+  ['android', 'linux'],
 
+  // Frontend / Web
+  ['html5', 'css3'],
+  ['html5', 'js'],
+  ['css3', 'tailwind'],
+  ['html5', 'tailwind'],
+  ['js', 'ts'],
+  ['js', 'react'],
+  ['ts', 'react'],
+  ['react', 'html5'],
+  ['react', 'css3'],
+  ['react', 'tailwind'],
+  ['react', 'next'],
+  ['next', 'ts'],
+  ['next', 'tailwind'],
+  ['next', 'node'],
+
+  // Backend / Database
   ['js', 'node'],
-  ['js', 'firebase'],
-  ['js', 'postgres'],
-  ['firebase', 'node'],
-  ['firebase', 'mysql'],
+  ['ts', 'node'],
   ['node', 'express'],
+  ['node', 'mongodb'],
   ['node', 'postgres'],
   ['node', 'mysql'],
-  ['node', 'mongodb'],
+  ['node', 'firebase'],
+  ['node', 'docker'],
   ['express', 'mongodb'],
   ['express', 'postgres'],
-  ['mysql', 'postgres'],
-  ['mysql', 'php'],
-  ['mongodb', 'php']
+  ['js', 'firebase'],
+  ['php', 'mysql'],
+  ['php', 'html5'],
+  ['php', 'linux'],
+
+  // DevOps
+  ['docker', 'linux'],
+  ['git', 'linux']
 ]
+
+// Prottek node er ring index ar starting angle ek-bar-i calculate kora hoy.
+const orbitInfo = {}
+rings.forEach((ring, ringIndex) => {
+  ring.ids.forEach((id, i) => {
+    orbitInfo[id] = {
+      ring,
+      ringIndex,
+      angle0: (i / ring.ids.length) * Math.PI * 2 + ringIndex * 0.9
+    }
+  })
+})
+
+// Phone-e orbit gulo ektu beshi ছড়িয়ে dewa hoy jate logo ghesha-ghesi na kore.
+const mobileRadii = [0.33, 0.55, 0.77, 0.98]
+const getRingRadius = (ring, index, width) =>
+  width < 720 ? mobileRadii[index] : ring.radius
 
 function Skills() {
   const canvasRef = useRef(null)
   const containerRef = useRef(null)
+  const nodeRefs = useRef({})
+  const activeRef = useRef(null)
   const [activeNode, setActiveNode] = useState(null)
 
   const isTouchDevice = () =>
     window.matchMedia('(hover: none), (pointer: coarse)').matches
+
+  // animation loop ke re-render chhara active node jananor jonno.
+  useEffect(() => {
+    activeRef.current = activeNode
+  }, [activeNode])
 
   // Mobile-e logo chara page-er jekono jaygay tap korle glow off.
   useEffect(() => {
@@ -196,6 +225,7 @@ function Skills() {
     }
   }
 
+  // Canvas (tara + orbit + highlight line) ar node position animation.
   useEffect(() => {
     const canvas = canvasRef.current
     const container = containerRef.current
@@ -205,9 +235,16 @@ function Skills() {
     const ctx = canvas.getContext('2d')
     if (!ctx) return
 
+    const reduceMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches
+
     let animationFrameId
     let width = 0
     let height = 0
+    let time = 0
+    let lastTs = 0
+    const positions = {}
 
     const stars = Array.from({ length: 75 }, () => ({
       x: Math.random(),
@@ -216,6 +253,8 @@ function Skills() {
       alpha: Math.random() * 0.5 + 0.25,
       speed: Math.random() * 0.00025 + 0.0001
     }))
+
+    const getPadding = () => (width < 720 ? 22 : 44)
 
     const resizeCanvas = () => {
       const rect = container.getBoundingClientRect()
@@ -232,7 +271,43 @@ function Skills() {
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
     }
 
-    const render = () => {
+    const placeNodes = () => {
+      const cx = width / 2
+      const cy = height / 2
+      const rx = cx - getPadding()
+      const ry = cy - getPadding()
+
+      techNodes.forEach((node) => {
+        let x = cx
+        let y = cy
+
+        const info = orbitInfo[node.id]
+        if (info) {
+          const angle = info.angle0 + time * info.ring.speed
+          const radius = getRingRadius(info.ring, info.ringIndex, width)
+          x = cx + Math.cos(angle) * rx * radius
+          y = cy + Math.sin(angle) * ry * radius
+        }
+
+        positions[node.id] = [x, y]
+
+        const el = nodeRefs.current[node.id]
+        if (el) {
+          el.style.transform = `translate(${x}px, ${y}px) translate(-50%, -50%)`
+        }
+      })
+    }
+
+    const render = (ts) => {
+      const dt = lastTs ? (ts - lastTs) / 1000 : 0
+      lastTs = ts
+
+      const active = activeRef.current
+
+      // Hover/tap korle sob ghora thame.
+      if (!active && !reduceMotion) time += dt
+
+      placeNodes()
       ctx.clearRect(0, 0, width, height)
 
       const isLight =
@@ -259,43 +334,56 @@ function Skills() {
         ctx.fill()
       })
 
-      connections.forEach(([id1, id2]) => {
-        const n1 = techNodes.find((node) => node.id === id1)
-        const n2 = techNodes.find((node) => node.id === id2)
+      // Orbit ring (dotted)
+      const cx = width / 2
+      const cy = height / 2
+      const pad = getPadding()
 
-        if (!n1 || !n2) return
-
-        const x1 = (n1.x / 100) * width
-        const y1 = (n1.y / 100) * height
-        const x2 = (n2.x / 100) * width
-        const y2 = (n2.y / 100) * height
-
-        const isHighlighted =
-          activeNode &&
-          (activeNode.id === id1 || activeNode.id === id2)
+      rings.forEach((ring, index) => {
+        const radius = getRingRadius(ring, index, width)
 
         ctx.beginPath()
-        ctx.moveTo(x1, y1)
-        ctx.lineTo(x2, y2)
+        ctx.ellipse(
+          cx,
+          cy,
+          (cx - pad) * radius,
+          (cy - pad) * radius,
+          0,
+          0,
+          Math.PI * 2
+        )
+        ctx.strokeStyle = isLight
+          ? 'rgba(15, 23, 42, 0.5)'
+          : 'rgba(255, 255, 255, 0.22)'
+        ctx.lineWidth = isLight ? 1.2 : 1.0
+        ctx.setLineDash([3, 6])
+        ctx.stroke()
+        ctx.setLineDash([])
+      })
 
-        if (isHighlighted) {
+      // Shudhu active node er connection line dekhabe.
+      if (active) {
+        connections.forEach(([id1, id2]) => {
+          if (active.id !== id1 && active.id !== id2) return
+
+          const p1 = positions[id1]
+          const p2 = positions[id2]
+          if (!p1 || !p2) return
+
+          ctx.beginPath()
+          ctx.moveTo(p1[0], p1[1])
+          ctx.lineTo(p2[0], p2[1])
           ctx.strokeStyle = '#00e5ff'
           ctx.lineWidth = 1.8
-        } else {
-          ctx.strokeStyle = isLight
-            ? 'rgba(71, 85, 105, 0.22)'
-            : 'rgba(255, 255, 255, 0.09)'
-          ctx.lineWidth = 0.9
-        }
-
-        ctx.stroke()
-      })
+          ctx.stroke()
+        })
+      }
 
       animationFrameId = window.requestAnimationFrame(render)
     }
 
     resizeCanvas()
-    render()
+    animationFrameId = window.requestAnimationFrame(render)
 
     const resizeObserver = new ResizeObserver(resizeCanvas)
     resizeObserver.observe(container)
@@ -307,7 +395,7 @@ function Skills() {
       resizeObserver.disconnect()
       window.removeEventListener('resize', resizeCanvas)
     }
-  }, [activeNode])
+  }, [])
 
   return (
     <section id="skills" className="section skills skills-section">
@@ -315,7 +403,7 @@ function Skills() {
         <div className="section-head skills-header-top reveal-on-scroll">
           <h2>Skills &amp; Technologies</h2>
           <p className="skills-section-sub">
-            Interactive constellation of core languages, AI frameworks, tools, and platforms
+            Interactive solar system of core languages, AI frameworks, tools, and platforms
           </p>
         </div>
 
@@ -336,18 +424,18 @@ function Skills() {
 
           {techNodes.map((node) => {
             const isActive = activeNode?.id === node.id
+            const isSun = node.id === 'c'
             const NodeIcon = node.Icon
 
             return (
               <button
                 type="button"
                 key={node.id}
-                className={`constellation-node ${isActive ? 'is-active' : ''}`}
-                style={{
-                  left: `${node.x}%`,
-                  top: `${node.y}%`,
-                  '--node-color': node.color
+                ref={(el) => {
+                  nodeRefs.current[node.id] = el
                 }}
+                className={`constellation-node ${isSun ? 'sun' : ''} ${isActive ? 'is-active' : ''}`}
+                style={{ '--node-color': node.color }}
                 onMouseEnter={() => handleNodeMouseEnter(node)}
                 onMouseLeave={handleNodeMouseLeave}
                 onTouchStart={() => {
