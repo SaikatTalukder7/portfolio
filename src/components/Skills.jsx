@@ -155,7 +155,7 @@ rings.forEach((ring, ringIndex) => {
 })
 
 // Phone-e orbit gulo ektu beshi ছড়িয়ে dewa hoy jate logo ghesha-ghesi na kore.
-const mobileRadii = [0.33, 0.55, 0.77, 0.98]
+const mobileRadii = [0.3, 0.53, 0.76, 0.98]
 const getRingRadius = (ring, index, width) =>
   width < 720 ? mobileRadii[index] : ring.radius
 
