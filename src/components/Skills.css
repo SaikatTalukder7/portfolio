@@ -661,7 +661,6 @@
 }
 
 
-
 /* Normal view intro: left theke rongin kon ese card gulo toiri hoy (shudhu prothom bar) */
 
 .skills-intro-canvas {
@@ -742,7 +741,6 @@
 }
 
 
-
 /* Ellipse view hint: shudhu phone e, box er niche (desktop e dekhabe na) */
 
 .skills-desktop-hint {
@@ -799,5 +797,34 @@
 @media (prefers-reduced-motion: reduce) {
   .skills-desktop-hint {
     animation: none;
+  }
+}
+
+
+/* Mobile: tap kora card desktop hover er moto zoom + glow pabe */
+
+@media (hover: none), (pointer: coarse) {
+  .skill-card {
+    position: relative;
+    transition:
+      scale 0.15s ease,
+      box-shadow 0.15s ease,
+      border-color 0.15s ease;
+  }
+
+  .skill-card.is-active {
+    z-index: 1;
+    scale: 1.08;
+    border-color: var(--node-color) !important;
+    box-shadow:
+      0 0 2px 0px var(--node-color),
+      0 0 4px 1px var(--node-color),
+      0 0 6px 1px var(--node-color);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skill-card {
+    transition: none;
   }
 }

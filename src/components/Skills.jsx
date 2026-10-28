@@ -199,12 +199,12 @@ function Skills() {
     activeRef.current = activeNode
   }, [activeNode])
 
-  // Mobile-e logo chara page-er jekono jaygay tap korle glow off.
+  // Mobile-e logo ba card chara page-er jekono jaygay tap korle glow off.
   useEffect(() => {
     const handleOutsideTap = (event) => {
       if (!isTouchDevice()) return
 
-      if (!event.target.closest('.constellation-node')) {
+      if (!event.target.closest('.constellation-node, .skill-card')) {
         setActiveNode(null)
       }
     }
@@ -245,6 +245,12 @@ function Skills() {
   const handleNodeClick = (event, node) => {
     event.currentTarget.blur()
 
+    if (isTouchDevice()) {
+      setActiveNode(node)
+    }
+  }
+
+  const handleCardClick = (node) => {
     if (isTouchDevice()) {
       setActiveNode(node)
     }
@@ -639,64 +645,64 @@ function Skills() {
 
           {viewMode === 'ellipse' ? (
             <>
-          {techNodes.map((node) => {
-            const isActive = activeNode?.id === node.id
-            const isSun = node.id === 'c'
-            const NodeIcon = node.Icon
+              {techNodes.map((node) => {
+                const isActive = activeNode?.id === node.id
+                const isSun = node.id === 'c'
+                const NodeIcon = node.Icon
 
-            return (
-              <button
-                type="button"
-                key={node.id}
-                ref={(el) => {
-                  nodeRefs.current[node.id] = el
-                }}
-                className={`constellation-node ${isSun ? 'sun' : ''} ${isActive ? 'is-active' : ''}`}
-                style={{ '--node-color': node.color }}
-                onMouseEnter={() => handleNodeMouseEnter(node)}
-                onMouseLeave={handleNodeMouseLeave}
-                onTouchStart={() => {
-                  if (isTouchDevice()) {
-                    setActiveNode(node)
-                  }
-                }}
-                onFocus={() => {
-                  if (!isTouchDevice()) {
-                    setActiveNode(node)
-                  }
-                }}
-                onBlur={() => {
-                  if (!isTouchDevice()) {
-                    setActiveNode(null)
-                  }
-                }}
-                onClick={(event) => handleNodeClick(event, node)}
-                aria-label={`${node.label}: ${node.category}`}
-              >
-                <span className="node-circle">
-                  <NodeIcon
-                    className="node-icon-svg"
-                    aria-hidden="true"
-                  />
-                </span>
-              </button>
-            )
-          })}
+                return (
+                  <button
+                    type="button"
+                    key={node.id}
+                    ref={(el) => {
+                      nodeRefs.current[node.id] = el
+                    }}
+                    className={`constellation-node ${isSun ? 'sun' : ''} ${isActive ? 'is-active' : ''}`}
+                    style={{ '--node-color': node.color }}
+                    onMouseEnter={() => handleNodeMouseEnter(node)}
+                    onMouseLeave={handleNodeMouseLeave}
+                    onTouchStart={() => {
+                      if (isTouchDevice()) {
+                        setActiveNode(node)
+                      }
+                    }}
+                    onFocus={() => {
+                      if (!isTouchDevice()) {
+                        setActiveNode(node)
+                      }
+                    }}
+                    onBlur={() => {
+                      if (!isTouchDevice()) {
+                        setActiveNode(null)
+                      }
+                    }}
+                    onClick={(event) => handleNodeClick(event, node)}
+                    aria-label={`${node.label}: ${node.category}`}
+                  >
+                    <span className="node-circle">
+                      <NodeIcon
+                        className="node-icon-svg"
+                        aria-hidden="true"
+                      />
+                    </span>
+                  </button>
+                )
+              })}
 
-          {activeNode && (
-            <div
-              className="constellation-tooltip"
-              role="status"
-              key={activeNode.id}
-            >
-              <span className="tooltip-category">
-                {activeNode.category}
-              </span>
-              <strong className="tooltip-title">
-                {activeNode.label}
-              </strong>
-            </div>
-          )}
+              {activeNode && (
+                <div
+                  className="constellation-tooltip"
+                  role="status"
+                  key={activeNode.id}
+                >
+                  <span className="tooltip-category">
+                    {activeNode.category}
+                  </span>
+                  <strong className="tooltip-title">
+                    {activeNode.label}
+                  </strong>
+                </div>
+              )}
             </>
           ) : (
             <div
@@ -704,15 +710,17 @@ function Skills() {
             >
               {techNodes.map((node) => {
                 const NodeIcon = node.Icon
+                const isActive = activeNode?.id === node.id
 
                 return (
                   <div
-                    className="skill-card"
+                    className={`skill-card ${isActive ? 'is-active' : ''}`}
                     key={node.id}
                     ref={(el) => {
                       cardRefs.current[node.id] = el
                     }}
                     style={{ '--node-color': node.color }}
+                    onClick={() => handleCardClick(node)}
                   >
                     <NodeIcon
                       className="skill-card-icon"
