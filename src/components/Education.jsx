@@ -2,6 +2,7 @@
 // Ekhane amar education gula separate card akare show kora hocche.
 
 import { education } from '../data/portfolioData.js'
+import Reveal from './Reveal.jsx'
 import './Education.css'
 
 function Education() {
@@ -9,15 +10,22 @@ function Education() {
     <section id="education" className="section education">
       <div className="container">
 
-        <div className="section-head">
+        <Reveal className="section-head">
           <h2>Education</h2>
-        </div>
+        </Reveal>
 
-        <div className="education-list">
+        {/* Dekha gele timeline er line nijei ankhe */}
+        <Reveal variant="none" className="education-list">
 
           {education.map((item, index) => (
 
-            <article className="education-entry" key={item.degree}>
+            <Reveal
+              as="article"
+              variant="left"
+              delay={index}
+              className="education-entry"
+              key={item.degree}
+            >
 
               {/* Education type onujayi icon */}
               <div className={`education-icon education-icon-${index}`}>
@@ -97,11 +105,11 @@ function Education() {
 
               </div>
 
-            </article>
+            </Reveal>
 
           ))}
 
-        </div>
+        </Reveal>
 
       </div>
     </section>

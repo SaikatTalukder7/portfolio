@@ -1,7 +1,8 @@
 // Navbar section
 // Menu te theme toggle, sob section er link and mobile hamburger menu ache.
+// Upore scroll progress bar ache, ar je section e achi seta highlight hoy.
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import './Navbar.css'
 
 // Navbar er sob link
@@ -17,6 +18,15 @@ function Navbar() {
   // Mobile menu open or close rakhe
   const [open, setOpen] = useState(false)
 
+  // Page scroll hoyeche kina (navbar e shadow dekhate)
+  const [scrolled, setScrolled] = useState(false)
+
+  // Ekhon kon section e achi (link highlight er jonno)
+  const [activeId, setActiveId] = useState('')
+
+  // Scroll progress bar
+  const progressRef = useRef(null)
+
   // Current theme rakhe
   const [theme, setTheme] = useState(() => {
     return localStorage.getItem('theme') || 'dark'
@@ -28,6 +38,63 @@ function Navbar() {
     localStorage.setItem('theme', theme)
   }, [theme])
 
+  // Scroll korle progress bar bhore and shadow ashe
+  useEffect(() => {
+    let ticking = false
+
+    const update = () => {
+      ticking = false
+      const max = document.documentElement.scrollHeight - window.innerHeight
+      const progress = max > 0 ? Math.min(1, window.scrollY / max) : 0
+
+      if (progressRef.current) {
+        progressRef.current.style.transform = `scaleX(${progress})`
+      }
+      setScrolled(window.scrollY > 12)
+    }
+
+    const onScroll = () => {
+      if (!ticking) {
+        ticking = true
+        requestAnimationFrame(update)
+      }
+    }
+
+    update()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('resize', onScroll)
+
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', onScroll)
+    }
+  }, [])
+
+  // Screen er majhkhane je section ache sheta active link hobe
+  useEffect(() => {
+    if (!('IntersectionObserver' in window)) return
+
+    const ids = ['top', ...links.map((link) => link.href.slice(1))]
+    const sections = ids
+      .map((id) => document.getElementById(id))
+      .filter(Boolean)
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Hero (top) e thakle kono link active na
+            setActiveId(entry.target.id === 'top' ? '' : entry.target.id)
+          }
+        })
+      },
+      { rootMargin: '-40% 0px -55% 0px' }
+    )
+
+    sections.forEach((section) => observer.observe(section))
+    return () => observer.disconnect()
+  }, [])
+
   const closeMenu = () => setOpen(false)
 
   const toggleTheme = () => {
@@ -35,7 +102,7 @@ function Navbar() {
   }
 
   return (
-    <header className="navbar">
+    <header className={`navbar ${scrolled ? 'is-scrolled' : ''}`}>
       <div className="container navbar-inner">
 
         <a
@@ -69,6 +136,7 @@ function Navbar() {
             {theme === 'dark' ? (
               /* Sun icon */
               <svg
+                key="sun"
                 className="theme-icon"
                 viewBox="0 0 24 24"
                 aria-hidden="true"
@@ -90,6 +158,7 @@ function Navbar() {
             ) : (
               /* Moon icon */
               <svg
+                key="moon"
                 className="theme-icon"
                 viewBox="0 0 24 24"
                 aria-hidden="true"
@@ -101,15 +170,22 @@ function Navbar() {
 
           {/* Sob navigation link ekhane show kore */}
           <nav className={`navbar-links ${open ? 'is-open' : ''}`}>
-            {links.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={closeMenu}
-              >
-                {link.label}
-              </a>
-            ))}
+            {links.map((link, i) => {
+              const isActive = activeId === link.href.slice(1)
+
+              return (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className={isActive ? 'is-active' : ''}
+                  aria-current={isActive ? 'true' : undefined}
+                  style={{ '--i': i }}
+                  onClick={closeMenu}
+                >
+                  {link.label}
+                </a>
+              )
+            })}
           </nav>
 
           {/* Mobile screen e hamburger menu show kore */}
@@ -126,6 +202,9 @@ function Navbar() {
 
         </div>
       </div>
+
+      {/* Scroll progress bar */}
+      <div className="scroll-progress" ref={progressRef} aria-hidden="true" />
     </header>
   )
 }

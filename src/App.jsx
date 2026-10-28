@@ -9,6 +9,7 @@ import Projects from './components/Projects.jsx'
 import Education from './components/Education.jsx'
 import Contact from './components/Contact.jsx'
 import Footer from './components/Footer.jsx'
+import BackToTop from './components/BackToTop.jsx'
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Contact />     {/* Contact info, social links, and message form */}
       </main>
       <Footer />
+      <BackToTop />   {/* Niche scroll korle ashe, ek click e upore niye jay */}
     </>
   )
 }

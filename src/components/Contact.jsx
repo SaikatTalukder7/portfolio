@@ -2,6 +2,7 @@
 // Ekhane amar contact info, social links and message form ache.
 
 import { useState } from 'react'
+import Reveal from './Reveal.jsx'
 import './Contact.css'
 
 // Amar contact info gula
@@ -111,21 +112,21 @@ function Contact() {
   return (
     <section id="contact" className="section contact">
       <div className="container">
-        <div className="section-head">
+        <Reveal className="section-head">
           <h2>Contact</h2>
           <p>
             Reach out for internships, research, software collaborations, and
             competitive programming initiatives. Feel free to reach out to me
             directly.
           </p>
-        </div>
+        </Reveal>
 
         <div className="contact-grid">
           <div className="contact-info">
             {/* Amar contact info gula show kore */}
             <ul className="info-list">
-              {infoItems.map((item) => (
-                <li key={item.label}>
+              {infoItems.map((item, i) => (
+                <Reveal as="li" delay={i} key={item.label}>
                   <span className="info-label">{item.label}</span>
 
                   {item.href ? (
@@ -142,16 +143,16 @@ function Contact() {
                   ) : (
                     <span className="info-value">{item.value}</span>
                   )}
-                </li>
+                </Reveal>
               ))}
             </ul>
 
-            <div className="social-block">
+            <Reveal className="social-block" delay={5}>
               <span className="social-label">Connect on Social Networks</span>
 
               {/* Amar social icon gula */}
-              <div className="social-icons">
-                {socialLinks.map((social) => (
+              <Reveal variant="none" className="social-icons">
+                {socialLinks.map((social, i) => (
                   <a
                     key={social.label}
                     href={social.href}
@@ -159,6 +160,7 @@ function Contact() {
                     rel="noreferrer"
                     aria-label={social.label}
                     className="social-icon"
+                    style={{ '--i': i }}
                   >
                     <svg
                       viewBox="0 0 24 24"
@@ -171,12 +173,18 @@ function Contact() {
                     </svg>
                   </a>
                 ))}
-              </div>
-            </div>
+              </Reveal>
+            </Reveal>
           </div>
 
           {/* Amar message form */}
-          <form className="contact-form" onSubmit={handleSubmit}>
+          <Reveal
+            as="form"
+            variant="right"
+            delay={2}
+            className="contact-form"
+            onSubmit={handleSubmit}
+          >
             <label>
               Your Name
               <input
@@ -211,9 +219,12 @@ function Contact() {
             </label>
 
             <button type="submit" className="btn btn-primary">
-              Send Message →
+              Send Message{' '}
+              <span className="btn-arrow" aria-hidden="true">
+                →
+              </span>
             </button>
-          </form>
+          </Reveal>
         </div>
       </div>
     </section>
