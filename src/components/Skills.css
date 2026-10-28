@@ -430,3 +430,232 @@
     animation: none;
   }
 }
+
+
+/* View toggle (Ellipse / Normal) */
+
+.view-toggle {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 6;
+  display: inline-flex;
+  gap: 2px;
+  padding: 3px;
+  border: 1px solid var(--border, rgba(148, 163, 184, 0.25));
+  border-radius: 999px;
+  background: var(--bg, #111827);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+}
+
+.view-toggle-btn {
+  padding: 6px 14px;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-muted, #9ca3af);
+  font: inherit;
+  font-size: 0.78rem;
+  line-height: 1.2;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
+}
+
+.view-toggle-btn:hover {
+  color: var(--text, #f8fafc);
+}
+
+.view-toggle-btn.is-selected {
+  background: rgba(0, 229, 255, 0.16);
+  color: var(--text, #f8fafc);
+}
+
+.view-toggle-btn:focus-visible {
+  outline: 2px solid #00e5ff;
+  outline-offset: 1px;
+}
+
+[data-theme='light'] .view-toggle {
+  background: var(--bg, #ffffff);
+}
+
+[data-theme='light'] .view-toggle-btn:hover {
+  color: var(--text, #111827);
+}
+
+[data-theme='light'] .view-toggle-btn.is-selected {
+  background: rgba(2, 132, 199, 0.14);
+  color: var(--text, #111827);
+}
+
+/* Normal view: skill box/card grid */
+
+.skills-grid {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 175px));
+  justify-content: center;
+  grid-template-rows: repeat(4, minmax(0, 1fr));
+  /* EDITED: card height/width ektu komano hoyeche (age: gap 10px, padding 56px 14px 14px) */
+  gap: 18px;
+  padding: 56px 28px 26px;
+}
+
+.skill-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  gap: 3px;
+  padding: 6px;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  background: #000000;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
+  text-align: center;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.skill-card-icon {
+  width: 26px;
+  height: 26px;
+  flex-shrink: 0;
+  color: var(--node-color);
+}
+
+.skill-card-title {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--color-muted, #f8fafc);
+  font-size: 0.82rem;
+  line-height: 1.4;
+}
+
+.skill-card-category {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--text-muted, #9ca3af);
+  font-size: 0.62rem;
+  line-height: 1.4;
+}
+
+[data-theme='light'] .skill-card {
+  background: #ffffff;
+  border-color: #646669;
+}
+
+[data-theme='light'] .skill-card-title {
+  color: var(--text, #111827);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .skill-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--node-color);
+    box-shadow:
+      0 0 2px 0px var(--node-color),
+      0 0 4px 1px var(--node-color),
+      0 0 6px 1px var(--node-color);
+  }
+}
+
+@media (max-width: 720px) {
+  .view-toggle {
+    top: 10px;
+    right: 10px;
+  }
+
+  .view-toggle-btn {
+    padding: 5px 11px;
+    font-size: 0.72rem;
+  }
+
+  .skills-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-rows: repeat(7, minmax(0, 1fr));
+    gap: 6px;
+    padding: 46px 8px 8px;
+  }
+
+  .skill-card {
+    gap: 2px;
+    padding: 2px 3px;
+    border-radius: 10px;
+  }
+
+  .skill-card-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .skill-card-title {
+    font-size: 0.64rem;
+  }
+
+  .skill-card-category {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .view-toggle-btn,
+  .skill-card {
+    transition: none;
+  }
+}
+
+
+/* View toggle: stronger contrast (overrides above) */
+
+.view-toggle {
+  border-color: rgba(148, 163, 184, 0.55);
+  background: #0f172a;
+}
+
+.view-toggle-btn {
+  color: #cbd5e1;
+  font-weight: 500;
+}
+
+.view-toggle-btn:hover {
+  color: #ffffff;
+}
+
+.view-toggle-btn.is-selected {
+  background: #00bcd4;
+  color: #04202a;
+  font-weight: 700;
+}
+
+[data-theme='light'] .view-toggle {
+  border-color: #64748b;
+  background: #ffffff;
+}
+
+[data-theme='light'] .view-toggle-btn {
+  color: #334155;
+}
+
+[data-theme='light'] .view-toggle-btn:hover {
+  color: #0f172a;
+}
+
+[data-theme='light'] .view-toggle-btn.is-selected {
+  background: #000000;
+  color: #ffffff;
+}

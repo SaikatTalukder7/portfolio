@@ -159,12 +159,25 @@ const mobileRadii = [0.3, 0.53, 0.76, 0.98]
 const getRingRadius = (ring, index, width) =>
   width < 720 ? mobileRadii[index] : ring.radius
 
+// Box-er opore toggle: Ellipse (solar system) ba Normal (box/card grid).
+const viewOptions = [
+  { id: 'normal', label: 'Normal' },
+  { id: 'ellipse', label: 'Ellipse' }
+]
+
 function Skills() {
   const canvasRef = useRef(null)
   const containerRef = useRef(null)
   const nodeRefs = useRef({})
   const activeRef = useRef(null)
   const [activeNode, setActiveNode] = useState(null)
+  // Default sob somoy 'normal'. Ellipse shudhu user toggle diye choose korle dekhabe.
+  const [viewMode, setViewMode] = useState('normal')
+
+  const handleViewChange = (mode) => {
+    setActiveNode(null)
+    setViewMode(mode)
+  }
 
   const isTouchDevice = () =>
     window.matchMedia('(hover: none), (pointer: coarse)').matches
@@ -239,6 +252,9 @@ function Skills() {
       '(prefers-reduced-motion: reduce)'
     ).matches
 
+    // Normal view-te shudhu tara (background) ankbe, orbit/node/line na.
+    const isEllipse = viewMode === 'ellipse'
+
     let animationFrameId
     let width = 0
     let height = 0
@@ -246,7 +262,9 @@ function Skills() {
     let lastTs = 0
     const positions = {}
 
-    const stars = Array.from({ length: 75 }, () => ({
+    // Dark mode e 105 ta tara (age 75), light mode e age-r moto 75 ta-i dekhabe.
+    const LIGHT_STAR_COUNT = 200
+    const stars = Array.from({ length: 300 }, () => ({
       x: Math.random(),
       y: Math.random(),
       size: Math.random() * 1.5 + 0.4,
@@ -307,13 +325,15 @@ function Skills() {
       // Hover/tap korle sob ghora thame.
       if (!active && !reduceMotion) time += dt
 
-      placeNodes()
+      if (isEllipse) placeNodes()
       ctx.clearRect(0, 0, width, height)
 
       const isLight =
         document.documentElement.getAttribute('data-theme') === 'light'
 
-      stars.forEach((star) => {
+      const visibleStars = isLight ? stars.slice(0, LIGHT_STAR_COUNT) : stars
+
+      visibleStars.forEach((star) => {
         star.y -= star.speed
 
         if (star.y < 0) star.y = 1
@@ -328,7 +348,7 @@ function Skills() {
         )
 
         ctx.fillStyle = isLight
-          ? `rgba(100, 116, 139, ${star.alpha * 0.6})`
+          ? `rgba(30, 41, 59, ${Math.min(star.alpha + 0.2, 0.9)})` // light mode e tara gaorho kora hoyeche (age: rgba(100,116,139) x 0.6)
           : `rgba(255, 255, 255, ${star.alpha})`
 
         ctx.fill()
@@ -339,7 +359,9 @@ function Skills() {
       const cy = height / 2
       const pad = getPadding()
 
-      rings.forEach((ring, index) => {
+      const ringsToDraw = isEllipse ? rings : []
+
+      ringsToDraw.forEach((ring, index) => {
         const radius = getRingRadius(ring, index, width)
 
         ctx.beginPath()
@@ -362,7 +384,7 @@ function Skills() {
       })
 
       // Shudhu active node er connection line dekhabe.
-      if (active) {
+      if (isEllipse && active) {
         connections.forEach(([id1, id2]) => {
           if (active.id !== id1 && active.id !== id2) return
 
@@ -395,7 +417,7 @@ function Skills() {
       resizeObserver.disconnect()
       window.removeEventListener('resize', resizeCanvas)
     }
-  }, [])
+  }, [viewMode])
 
   return (
     <section id="skills" className="section skills skills-section">
@@ -409,19 +431,35 @@ function Skills() {
 
         <div
           ref={containerRef}
-          className="constellation-wrapper reveal-on-scroll"
+          className={`constellation-wrapper reveal-on-scroll ${viewMode === 'normal' ? 'is-grid' : ''}`}
           onMouseLeave={() => {
             if (!isTouchDevice()) {
               setActiveNode(null)
             }
           }}
         >
+          <div className="view-toggle" role="group" aria-label="Skills view">
+            {viewOptions.map((option) => (
+              <button
+                type="button"
+                key={option.id}
+                className={`view-toggle-btn ${viewMode === option.id ? 'is-selected' : ''}`}
+                aria-pressed={viewMode === option.id}
+                onClick={() => handleViewChange(option.id)}
+              >
+                {option.label}
+              </button>
+            ))}
+          </div>
+
           <canvas
             ref={canvasRef}
             className="constellation-canvas"
             aria-hidden="true"
           />
 
+          {viewMode === 'ellipse' ? (
+            <>
           {techNodes.map((node) => {
             const isActive = activeNode?.id === node.id
             const isSun = node.id === 'c'
@@ -478,6 +516,33 @@ function Skills() {
               <strong className="tooltip-title">
                 {activeNode.label}
               </strong>
+            </div>
+          )}
+            </>
+          ) : (
+            <div className="skills-grid">
+              {techNodes.map((node) => {
+                const NodeIcon = node.Icon
+
+                return (
+                  <div
+                    className="skill-card"
+                    key={node.id}
+                    style={{ '--node-color': node.color }}
+                  >
+                    <NodeIcon
+                      className="skill-card-icon"
+                      aria-hidden="true"
+                    />
+                    <strong className="skill-card-title">
+                      {node.label}
+                    </strong>
+                    <span className="skill-card-category">
+                      {node.category}
+                    </span>
+                  </div>
+                )
+              })}
             </div>
           )}
         </div>
