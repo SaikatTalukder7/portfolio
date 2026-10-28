@@ -27,7 +27,7 @@ import {
   SiPhp,
   SiAndroid
 } from 'react-icons/si'
-import { FaCss3Alt, FaJava } from 'react-icons/fa6'
+import { FaCss3Alt, FaJava, FaDesktop } from 'react-icons/fa6'
 import './Skills.css'
 
 // x/y nai ekhon: position ring + angle theke calculate hoy.
@@ -170,12 +170,24 @@ function Skills() {
   const containerRef = useRef(null)
   const nodeRefs = useRef({})
   const activeRef = useRef(null)
+  const cardRefs = useRef({})
+  const introCanvasRef = useRef(null)
   const [activeNode, setActiveNode] = useState(null)
   // Default sob somoy 'normal'. Ellipse shudhu user toggle diye choose korle dekhabe.
   const [viewMode, setViewMode] = useState('normal')
+  // Normal view-er intro (left theke tara ese card toiri): wait -> run -> done. Shudhu prothom bar.
+  const [introState, setIntroState] = useState('wait')
 
   const handleViewChange = (mode) => {
+    if (mode === viewMode) return
+
+    const reduceMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches
+
     setActiveNode(null)
+    // Ellipse theke Normal e gele intro abar cholbe, Ellipse e gele bondho.
+    setIntroState(mode === 'normal' && !reduceMotion ? 'run' : 'done')
     setViewMode(mode)
   }
 
@@ -237,6 +249,173 @@ function Skills() {
       setActiveNode(node)
     }
   }
+
+  // Navbar-er Skills link (href="#skills") e click korle intro abar cholbe.
+  useEffect(() => {
+    const handleNavClick = (event) => {
+      const link = event.target.closest?.('a[href$="#skills"]')
+
+      if (link) {
+        setIntroState('wait')
+      }
+    }
+
+    document.addEventListener('click', handleNavClick)
+
+    return () => {
+      document.removeEventListener('click', handleNavClick)
+    }
+  }, [])
+
+  // Normal view-er intro: Skills section prothom bar dekha gele shuru hoy.
+  useEffect(() => {
+    if (viewMode !== 'normal' || introState !== 'wait') return
+
+    const container = containerRef.current
+    if (!container) return
+
+    const reduceMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches
+
+    if (reduceMotion) {
+      setIntroState('done')
+      return
+    }
+
+    if (!('IntersectionObserver' in window)) {
+      setIntroState('run')
+      return
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]?.isIntersecting) {
+          observer.disconnect()
+          setIntroState('run')
+        }
+      },
+      { threshold: 0.35 }
+    )
+
+    observer.observe(container)
+
+    return () => observer.disconnect()
+  }, [viewMode, introState])
+
+  // Intro animation: left theke rongin kon ese prottek card e jome jay.
+  useEffect(() => {
+    if (introState !== 'run') return
+
+    const canvas = introCanvasRef.current
+    const container = containerRef.current
+
+    if (!canvas || !container) return
+
+    const ctx = canvas.getContext('2d')
+    if (!ctx) return
+
+    const rect = container.getBoundingClientRect()
+    const dpr = window.devicePixelRatio || 1
+
+    canvas.width = Math.round(rect.width * dpr)
+    canvas.height = Math.round(rect.height * dpr)
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+
+    const perCard = rect.width < 720 ? 10 : 24
+    const particles = []
+    let totalTime = 0
+
+    techNodes.forEach((node) => {
+      const el = cardRefs.current[node.id]
+      if (!el) return
+
+      const r = el.getBoundingClientRect()
+      const left = r.left - rect.left
+      const top = r.top - rect.top
+
+      // Bam-er card age, dan-er card pore.
+      const delay = (left / rect.width) * 0.9 + (top / rect.height) * 0.25
+
+      // Card ta kon jachhe pouchhonor kachhakachhi somoy-e dekha dey.
+      el.style.setProperty('--assemble-delay', `${delay + 0.7}s`)
+      totalTime = Math.max(totalTime, delay + 0.7 + 0.6)
+
+      for (let i = 0; i < perCard; i += 1) {
+        const tx = left + Math.random() * r.width
+        const ty = top + Math.random() * r.height
+        const start = delay + Math.random() * 0.25
+        const duration = 0.8 + Math.random() * 0.5
+
+        totalTime = Math.max(totalTime, start + duration)
+
+        particles.push({
+          sx: -(Math.random() * 80 + 10),
+          sy: Math.min(
+            Math.max(ty + (Math.random() - 0.5) * rect.height * 0.7, 0),
+            rect.height
+          ),
+          tx,
+          ty,
+          start,
+          duration,
+          size: Math.random() * 1.4 + 0.9,
+          wobble: Math.random() * 14 + 4,
+          phase: Math.random() * Math.PI * 2,
+          color: node.color
+        })
+      }
+    })
+
+    let animationFrameId
+    const startTime = performance.now()
+
+    const render = (now) => {
+      const elapsed = (now - startTime) / 1000
+
+      ctx.clearRect(0, 0, rect.width, rect.height)
+
+      particles.forEach((p) => {
+        const progress = Math.min(
+          Math.max((elapsed - p.start) / p.duration, 0),
+          1
+        )
+
+        if (progress <= 0 || progress >= 1) return
+
+        const eased = 1 - Math.pow(1 - progress, 3)
+        const x = p.sx + (p.tx - p.sx) * eased
+        const y =
+          p.sy +
+          (p.ty - p.sy) * eased +
+          Math.sin(progress * Math.PI * 3 + p.phase) *
+            p.wobble *
+            (1 - progress)
+
+        const fadeIn = Math.min(progress / 0.15, 1)
+        const fadeOut = Math.min((1 - progress) / 0.2, 1)
+
+        ctx.globalAlpha = fadeIn * fadeOut * 0.9
+        ctx.fillStyle = p.color
+        ctx.beginPath()
+        ctx.arc(x, y, p.size, 0, Math.PI * 2)
+        ctx.fill()
+      })
+
+      ctx.globalAlpha = 1
+
+      if (elapsed >= totalTime + 0.1) {
+        setIntroState('done')
+        return
+      }
+
+      animationFrameId = window.requestAnimationFrame(render)
+    }
+
+    animationFrameId = window.requestAnimationFrame(render)
+
+    return () => window.cancelAnimationFrame(animationFrameId)
+  }, [introState])
 
   // Canvas (tara + orbit + highlight line) ar node position animation.
   useEffect(() => {
@@ -520,7 +699,9 @@ function Skills() {
           )}
             </>
           ) : (
-            <div className="skills-grid">
+            <div
+              className={`skills-grid ${introState === 'wait' ? 'is-wait' : ''} ${introState === 'run' ? 'is-intro' : ''}`}
+            >
               {techNodes.map((node) => {
                 const NodeIcon = node.Icon
 
@@ -528,6 +709,9 @@ function Skills() {
                   <div
                     className="skill-card"
                     key={node.id}
+                    ref={(el) => {
+                      cardRefs.current[node.id] = el
+                    }}
                     style={{ '--node-color': node.color }}
                   >
                     <NodeIcon
@@ -545,7 +729,25 @@ function Skills() {
               })}
             </div>
           )}
+
+          {viewMode === 'normal' && introState === 'run' && (
+            <canvas
+              ref={introCanvasRef}
+              className="skills-intro-canvas"
+              aria-hidden="true"
+            />
+          )}
         </div>
+
+        {viewMode === 'ellipse' && (
+          <p className="skills-desktop-hint" role="note">
+            <FaDesktop className="skills-desktop-hint-icon" aria-hidden="true" />
+            <span>
+              Ellipse view looks even better on desktop. For the best
+              experience, open this on a larger screen.
+            </span>
+          </p>
+        )}
       </div>
     </section>
   )

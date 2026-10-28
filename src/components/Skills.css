@@ -659,3 +659,145 @@
   background: #000000;
   color: #ffffff;
 }
+
+
+
+/* Normal view intro: left theke rongin kon ese card gulo toiri hoy (shudhu prothom bar) */
+
+.skills-intro-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.skills-grid.is-wait .skill-card {
+  opacity: 0;
+}
+
+.skills-grid.is-intro .skill-card {
+  animation: skillCardAssemble 0.6s ease both;
+  animation-delay: var(--assemble-delay, 99s);
+}
+
+@keyframes skillCardAssemble {
+  from {
+    opacity: 0;
+    filter: blur(6px);
+    transform: scale(0.92);
+  }
+
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skills-grid.is-wait .skill-card {
+    opacity: 1;
+  }
+
+  .skills-grid.is-intro .skill-card {
+    animation: none;
+  }
+}
+
+
+/* Mobile Normal view: box ta square na, card er height onujayi lomba hoy (naam kete jabe na) */
+
+@media (max-width: 720px) {
+  .constellation-wrapper.is-grid {
+    height: auto;
+    aspect-ratio: auto;
+    max-height: none;
+  }
+
+  .constellation-wrapper.is-grid .skills-grid {
+    position: relative;
+    inset: auto;
+    grid-template-rows: none;
+    grid-auto-rows: 60px;
+    gap: 6px;
+    padding: 52px 8px 12px;
+  }
+
+  .skill-card {
+    gap: 3px;
+    padding: 4px 3px;
+  }
+
+  .skill-card-icon {
+    width: 22px;
+    height: 22px;
+  }
+
+  .skill-card-title {
+    font-size: 0.62rem;
+  }
+}
+
+
+
+/* Ellipse view hint: shudhu phone e, box er niche (desktop e dekhabe na) */
+
+.skills-desktop-hint {
+  display: none;
+}
+
+@media (max-width: 720px) {
+  .skills-desktop-hint {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin: 12px 0 0;
+    padding: 10px 14px;
+    border: 1px solid rgba(0, 229, 255, 0.35);
+    border-radius: 12px;
+    background: rgba(0, 229, 255, 0.08);
+    color: #cbd5e1;
+    font-size: 0.8rem;
+    line-height: 1.5;
+    animation: skillsHintIn 0.3s ease;
+  }
+
+  .skills-desktop-hint-icon {
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+    margin-top: 2px;
+    color: #00e5ff;
+  }
+
+  [data-theme='light'] .skills-desktop-hint {
+    border-color: rgba(2, 132, 199, 0.4);
+    background: rgba(2, 132, 199, 0.08);
+    color: #0f172a;
+  }
+
+  [data-theme='light'] .skills-desktop-hint-icon {
+    color: #0284c7;
+  }
+}
+
+@keyframes skillsHintIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skills-desktop-hint {
+    animation: none;
+  }
+}
