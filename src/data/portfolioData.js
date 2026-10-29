@@ -10,7 +10,7 @@ export const profile = {
 I work with Python, Java, and C++, and I'm also exploring web development, Linux, and cloud technologies. Currently, I'm focusing on improving my Python skills and learning more about Cloud Computing and DevOps.
 
 My goal is to build a career in Cloud and DevOps, gain practical experience, and keep improving as a developer by building projects and learning new things.`,
-  photo: '/images/saikat.png',
+  photo: '/images/saikat.webp',
   resumeUrl: '/resume.pdf',
 }
 
