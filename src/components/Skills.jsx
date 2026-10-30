@@ -173,8 +173,10 @@ function Skills() {
   const cardRefs = useRef({})
   const introCanvasRef = useRef(null)
   const [activeNode, setActiveNode] = useState(null)
-  // Default sob somoy 'normal'. Ellipse shudhu user toggle diye choose korle dekhabe.
-  const [viewMode, setViewMode] = useState('normal')
+  // Phone (720px ba choto) e 'normal', desktop e prothome 'ellipse'. Toggle diye bodlano jay.
+  const [viewMode, setViewMode] = useState(() =>
+    window.matchMedia('(max-width: 720px)').matches ? 'normal' : 'ellipse'
+  )
   // Normal view-er intro (left theke tara ese card toiri): wait -> run -> done. Shudhu prothom bar.
   const [introState, setIntroState] = useState('wait')
 
@@ -497,6 +499,11 @@ function Skills() {
         const el = nodeRefs.current[node.id]
         if (el) {
           el.style.transform = `translate(${x}px, ${y}px) translate(-50%, -50%)`
+
+          // Orbit er niche ordhek = samne (Sun er upore), upor ordhek = pichone (Sun er niche)
+          if (info) {
+            el.style.zIndex = y > cy ? 4 : 2
+          }
         }
       })
     }
